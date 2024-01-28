@@ -91,4 +91,71 @@ const golfData = [
   },
 ];
 
-export {golfData};
+const yardsData = {
+  hole1: 500,
+  hole2: 400,
+  hole3: 300,
+  hole4: 500,
+  hole5: 400,
+  hole6: 400,
+  hole7: 300,
+  hole8: 400,
+  hole9: 400,
+  hole10: 400,
+  hole11: 400,
+  hole12: 300,
+  hole13: 500,
+  hole14: 400,
+  hole15: 400,
+  hole16: 300,
+  hole17: 400,
+  hole18: 400,
+};
+
+const parData = {
+  hole1: 5,
+  hole2: 4,
+  hole3: 3,
+  hole4: 5,
+  hole5: 4,
+  hole6: 4,
+  hole7: 3,
+  hole8: 4,
+  hole9: 4,
+  hole10: 4,
+  hole11: 4,
+  hole12: 3,
+  hole13: 5,
+  hole14: 4,
+  hole15: 4,
+  hole16: 3,
+  hole17: 4,
+  hole18: 4,
+};
+ const round = {
+   hole1: 4,
+   hole2: 5,
+   hole3: 3,
+   hole4: 4,
+   hole5: 6,
+   hole6: 4,
+   hole7: 3,
+   hole8: 5,
+   hole9: 6,
+   out: 40,
+   hole10: 4,
+   hole11: 5,
+   hole12: 3,
+   hole13: 4,
+   hole14: 6,
+   hole15: 4,
+   hole16: 3,
+   hole17: 5,
+   hole18: 6,
+   in: 40,
+   total: 80,
+ };
+
+
+
+export {golfData, yardsData, parData, round};

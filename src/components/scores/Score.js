@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import Player from "./Player";
+import { yardsData, parData, round } from "../../constants";
 
 const Score = ({ playerData }) => {
-  
   return (
     <div className="rounded-md bg-[#f1f1f1]">
-      <Player playerData={playerData}/>
+      <Player playerData={playerData} />
       <div className="flex flex-col justify-between capitalize p-5 ">
         <table className="table-auto border">
           <thead className="bg-[#0B6623]/[0.5]">
@@ -37,75 +37,76 @@ const Score = ({ playerData }) => {
           <tbody>
             <tr>
               <td className="text-left p-2">par</td>
-              <td>5</td>
-              <td>4</td>
-              <td>3</td>
-              <td>5</td>
-              <td>4</td>
-              <td>4</td>
-              <td>3</td>
-              <td>4</td>
-              <td>4</td>
+              <td>{parData.hole1}</td>
+              <td>{parData.hole2}</td>
+              <td>{parData.hole3}</td>
+              <td>{parData.hole4}</td>
+              <td>{parData.hole5}</td>
+              <td>{parData.hole6}</td>
+              <td>{parData.hole7}</td>
+              <td>{parData.hole8}</td>
+              <td>{parData.hole9}</td>
               <td className="bg-[#FAFAD2]">36</td>
-              <td>4</td>
-              <td>4</td>
-              <td>3</td>
-              <td>5</td>
-              <td>4</td>
-              <td>4</td>
-              <td>3</td>
-              <td>4</td>
-              <td>4</td>
+              <td>{parData.hole10}</td>
+              <td>{parData.hole11}</td>
+              <td>{parData.hole12}</td>
+              <td>{parData.hole13}</td>
+              <td>{parData.hole14}</td>
+              <td>{parData.hole15}</td>
+              <td>{parData.hole16}</td>
+              <td>{parData.hole17}</td>
+              <td>{parData.hole18}</td>
               <td className="bg-[#A45A52]">35</td>
               <td>71</td>
             </tr>
             <tr>
               <td className="text-left p-2">yards</td>
-              <td>500</td>
-              <td>400</td>
-              <td>300</td>
-              <td>500</td>
-              <td>400</td>
-              <td>400</td>
-              <td>300</td>
-              <td>400</td>
-              <td>400</td>
+              <td>{yardsData.hole1}</td>
+              <td>{yardsData.hole2}</td>
+              <td>{yardsData.hole3}</td>
+              <td>{yardsData.hole4}</td>
+              <td>{yardsData.hole5}</td>
+              <td>{yardsData.hole6}</td>
+              <td>{yardsData.hole7}</td>
+              <td>{yardsData.hole8}</td>
+              <td>{yardsData.hole9}</td>
               <td className="bg-[#FAFAD2]">3600</td>
-              <td>400</td>
-              <td>400</td>
-              <td>300</td>
-              <td>500</td>
-              <td>400</td>
-              <td>400</td>
-              <td>300</td>
-              <td>400</td>
-              <td>400</td>
+              <td>{yardsData.hole10}</td>
+              <td>{yardsData.hole11}</td>
+              <td>{yardsData.hole12}</td>
+              <td>{yardsData.hole13}</td>
+              <td>{yardsData.hole14}</td>
+              <td>{yardsData.hole15}</td>
+              <td>{yardsData.hole16}</td>
+              <td>{yardsData.hole17}</td>
+              <td>{yardsData.hole18}</td>
               <td className="bg-[#A45A52]">3500</td>
+
               <td>7100</td>
             </tr>
             <tr className="bg-[#90EE90]/[0.2]">
               <td className="text-left p-2">round</td>
-              <td>5</td>
-              <td>4</td>
-              <td>3</td>
-              <td>5</td>
-              <td>4</td>
-              <td>4</td>
-              <td>3</td>
-              <td>4</td>
-              <td>4</td>
-              <td className="bg-[#FAFAD2]">36</td>
-              <td>4</td>
-              <td>4</td>
-              <td>3</td>
-              <td>5</td>
-              <td>4</td>
-              <td>4</td>
-              <td>3</td>
-              <td>4</td>
-              <td>4</td>
-              <td className="bg-[#A45A52]">35</td>
-              <td>71</td>
+              <td>{round.hole1}</td>
+              <td>{round.hole2}</td>
+              <td>{round.hole3}</td>
+              <td>{round.hole4}</td>
+              <td>{round.hole5}</td>
+              <td>{round.hole6}</td>
+              <td>{round.hole7}</td>
+              <td>{round.hole8}</td>
+              <td>{round.hole9}</td>
+              <td className="bg-[#FAFAD2]">{round.out}</td>
+              <td>{round.hole10}</td>
+              <td>{round.hole11}</td>
+              <td>{round.hole12}</td>
+              <td>{round.hole13}</td>
+              <td>{round.hole14}</td>
+              <td>{round.hole15}</td>
+              <td>{round.hole16}</td>
+              <td>{round.hole17}</td>
+              <td>{round.hole18}</td>
+              <td className="bg-[#A45A52]">{round.in}</td>
+              <td>{round.total}</td>
             </tr>
           </tbody>
         </table>

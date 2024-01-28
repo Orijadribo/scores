@@ -13,7 +13,7 @@ const Table = () => {
 
   useEffect(() => {
     // console.log("Updated isOpen:", isOpen);
-    console.log("Updated currentPlayer:", currentPlayer);
+    // console.log("Updated currentPlayer:", currentPlayer);
   }, [isOpen, currentPlayer]);
 
   const sortedGolfData = [...golfData].sort(
