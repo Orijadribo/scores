@@ -149,8 +149,8 @@ const parData = {
    hole14:2,
    hole15: 4,
    hole16: 6,
-   hole17: 5,
-   hole18: 6,
+   hole17: "-",
+   hole18: "-",
  };
 
 

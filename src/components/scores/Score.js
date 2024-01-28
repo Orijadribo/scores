@@ -17,40 +17,42 @@ const Score = ({ playerData }) => {
     { length: 9 },
     (_, index) => parData[`hole${index + 1}`]
   );
-  const totalParFront = parValuesFront.reduce((acc, val) => acc + val, 0);
-
   const parValuesBack = Array.from(
     { length: 9 },
     (_, index) => parData[`hole${index + 1}`]
   );
+
+  const totalParFront = parValuesFront.reduce((acc, val) => acc + val, 0);
   const totalParBack = parValuesBack.reduce((acc, val) => acc + val, 0);
 
   const frontNineYards = frontNine.map(
     (holeNumber) => yardsData[`hole${holeNumber}`]
   );
-  const totalFrontNineYards = frontNineYards.reduce(
-    (acc, yards) => acc + yards,
-    0
-  );
-
   const backNineYards = backNine.map(
     (holeNumber) => yardsData[`hole${holeNumber}`]
   );
 
+  const totalFrontNineYards = frontNineYards.reduce(
+    (acc, yards) => acc + yards,
+    0
+  );
   const totalBackNineYards = backNineYards.reduce(
     (acc, yards) => acc + yards,
     0
   );
 
-  const totalFrontNineScores = frontNine.reduce(
-    (acc, holeNumber) => acc + round[`hole${holeNumber}`],
-    0
-  );
-
-  const totalBackNineScores = backNine.reduce(
-    (acc, holeNumber) => acc + round[`hole${holeNumber}`],
-    0
-  );
+  const totalFrontNineScores = frontNine.reduce((acc, holeNumber) => {
+    const holeScore = round[`hole${holeNumber}`];
+    return acc + (Number.isFinite(holeScore) ? holeScore : 0);
+  }, 0);
+  const totalBackNineScores = backNine.reduce((acc, holeNumber) => {
+    const holeScore = round[`hole${holeNumber}`];
+    return acc + (Number.isFinite(holeScore) ? holeScore : 0);
+  }, 0);
+  // const totalBackNineScores = backNine.reduce(
+  //   (acc, holeNumber) => acc + round[`hole${holeNumber}`],
+  //   0
+  // );
 
   return (
     <div className="rounded-md bg-[#f1f1f1]">
@@ -109,7 +111,11 @@ const Score = ({ playerData }) => {
                   </div>
                 </td>
               ))}
-              <td className="bg-[#FAFAD2]">{totalFrontNineScores}</td>
+              <td className="bg-[#FAFAD2]">
+                {Number.isFinite(totalFrontNineScores)
+                  ? totalFrontNineScores
+                  : "-"}
+              </td>
               {backNine.map((holeNumber) => (
                 <td key={holeNumber} className="relative">
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -121,7 +127,11 @@ const Score = ({ playerData }) => {
                   </div>
                 </td>
               ))}
-              <td className="bg-[#A45A52]">{totalBackNineScores}</td>
+              <td className="bg-[#A45A52]">
+                {Number.isFinite(totalBackNineScores)
+                  ? totalBackNineScores
+                  : "-"}
+              </td>
               <td>{totalFrontNineScores + totalBackNineScores}</td>
             </tr>
           </tbody>

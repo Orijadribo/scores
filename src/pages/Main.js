@@ -5,7 +5,7 @@ import Scores from "../components/scores/Scores";
 
 const Main = () => {
   return (
-    <div>
+    <div className="pb-20">
       <Header />
       <HeaderBottom />
       <Scores/>
