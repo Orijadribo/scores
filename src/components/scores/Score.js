@@ -49,10 +49,6 @@ const Score = ({ playerData }) => {
     const holeScore = round[`hole${holeNumber}`];
     return acc + (Number.isFinite(holeScore) ? holeScore : 0);
   }, 0);
-  // const totalBackNineScores = backNine.reduce(
-  //   (acc, holeNumber) => acc + round[`hole${holeNumber}`],
-  //   0
-  // );
 
   return (
     <div className="rounded-md bg-[#f1f1f1]">
