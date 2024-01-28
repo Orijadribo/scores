@@ -1,8 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Player from "./Player";
 import { yardsData, parData, round } from "../../constants";
+import Eagle from "./Eagle";
+import Birdie from "./Birdie";
+import Bogey from "./Bogey";
+import DBogey from "./DBogey";
 
 const Score = ({ playerData }) => {
+  const [hideScore, setHideScore] = useState(false);
+
   return (
     <div className="rounded-md bg-[#f1f1f1]">
       <Player playerData={playerData} />
@@ -81,12 +87,15 @@ const Score = ({ playerData }) => {
               <td>{yardsData.hole17}</td>
               <td>{yardsData.hole18}</td>
               <td className="bg-[#A45A52]">3500</td>
-
               <td>7100</td>
             </tr>
             <tr className="bg-[#90EE90]/[0.2]">
               <td className="text-left p-2">round</td>
-              <td>{round.hole1}</td>
+              <td className="relative">
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <Birdie hideScore={hideScore} hole1={round.hole1} />
+                </div>
+              </td>
               <td>{round.hole2}</td>
               <td>{round.hole3}</td>
               <td>{round.hole4}</td>
@@ -111,26 +120,10 @@ const Score = ({ playerData }) => {
           </tbody>
         </table>
         <div className="flex items-center justify-center gap-4 pt-5">
-          <div className="flex items-center justify-center gap-4">
-            <div className="flex items-center justify-center w-5 h-5 border border-black rounded-full">
-              <div className="flex items-center justify-center w-4 h-4 bg-black  rounded-full"></div>
-            </div>
-            <p>eagle or better</p>
-          </div>
-          <div className="flex items-center justify-center gap-4">
-            <div className="flex items-center justify-center w-5 h-5 bg-black rounded-full"></div>
-            <p>birdie</p>
-          </div>
-          <div className="flex items-center justify-center gap-4">
-            <div className="flex items-center justify-center w-5 h-5 bg-black"></div>
-            <p>bogey</p>
-          </div>
-          <div className="flex items-center justify-center gap-4">
-            <div className="flex items-center justify-center w-5 h-5 border border-black">
-              <div className="flex items-center justify-center w-4 h-4 bg-black"></div>
-            </div>
-            <p>double bogey or better</p>
-          </div>
+          <Eagle />
+          <Birdie hideScore={true} />
+          <Bogey />
+          <DBogey />
         </div>
       </div>
     </div>
