@@ -1,25 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { golfData } from "../../constants";
 import Score from "./Score";
 
 const Table = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentPlayer, setCurrentPlayer] = useState(null);
 
-  const openScore = () => {
+  const openScore = (id) => {
     setIsOpen(!isOpen);
+    isOpen ? setCurrentPlayer(null) : setCurrentPlayer(id);
   };
+
+  useEffect(() => {
+    // console.log("Updated isOpen:", isOpen);
+    console.log("Updated currentPlayer:", currentPlayer);
+  }, [isOpen, currentPlayer]);
 
   const sortedGolfData = [...golfData].sort(
     (a, b) => a["TO PAR"] - b["TO PAR"]
   );
-
-   const { id, POS, PLAYER, THRU, ROUND, GROSS } = sortedGolfData[0];
-  //  console.log(PLAYER);
-
-  //  sortedGolfData.forEach((id) => {
-  //    console.log(id.id);
-  //  });
-
   return (
     <div>
       <div className="grid grid-cols-8 uppercase text-center text-white bg-[#0B6623] rounded-t-md">
@@ -32,15 +31,17 @@ const Table = () => {
       </div>
       <div>
         {sortedGolfData.map((playerData) => (
-          <div key={playerData.id} className="grid-rows-2 uppercase text-center">
+          <div
+            key={playerData.id}
+            className="grid-rows-2 uppercase text-center"
+          >
             <div className="grid grid-cols-8 border-b mx-1">
               <p className=" p-2">{playerData.POS}</p>
               <p
                 className=" flex items-center gap-4 col-span-3 p-2 pl-10 text-left cursor-pointer hover:underline decoration-[#0B6623]"
-                onClick={openScore}
+                onClick={() => openScore(playerData.id)}
               >
                 {playerData.PLAYER}
-                {/* <FaChevronDown /> */}
               </p>
               <p className="p-2">{playerData["TO PAR"]}</p>
               <p className="p-2">{playerData.THRU}</p>
