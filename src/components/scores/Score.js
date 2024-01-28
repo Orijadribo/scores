@@ -1,10 +1,10 @@
 import React from "react";
 import Player from "./Player";
 
-const Score = () => {
+const Score = (props) => {
   return (
-    <div className="border-t border-b">
-      <Player />
+    <div className="rounded-md bg-[#f1f1f1]">
+      <Player playerData={props.playerData} />
       <div className="flex flex-col justify-between capitalize p-5 ">
         <table className="table-auto border">
           <thead className="bg-[#0B6623]/[0.5]">
@@ -58,7 +58,7 @@ const Score = () => {
               <td className="bg-[#A45A52]">35</td>
               <td>71</td>
             </tr>
-            <tr>
+            <tr >
               <td className="text-left p-2">yards</td>
               <td>500</td>
               <td>400</td>
@@ -82,7 +82,7 @@ const Score = () => {
               <td className="bg-[#A45A52]">3500</td>
               <td>7100</td>
             </tr>
-            <tr>
+            <tr className="bg-[#90EE90]/[0.2]">
               <td className="text-left p-2">round</td>
               <td>5</td>
               <td>4</td>

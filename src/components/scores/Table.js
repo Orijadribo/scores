@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { golfData } from "../../constants";
-import { FaChevronDown } from "react-icons/fa6";
 import Score from "./Score";
 
 const Table = () => {
@@ -14,6 +13,13 @@ const Table = () => {
     (a, b) => a["TO PAR"] - b["TO PAR"]
   );
 
+   const { id, POS, PLAYER, THRU, ROUND, GROSS } = sortedGolfData[0];
+  //  console.log(PLAYER);
+
+  //  sortedGolfData.forEach((id) => {
+  //    console.log(id.id);
+  //  });
+
   return (
     <div>
       <div className="grid grid-cols-8 uppercase text-center text-white bg-[#0B6623] rounded-t-md">
@@ -24,24 +30,24 @@ const Table = () => {
         <p className="p-5">round</p>
         <p className="p-5">gross</p>
       </div>
-      <div className="border rounded-md">
-        {sortedGolfData.map((player) => (
-          <div key={player.id} className="grid-rows-2 uppercase text-center">
-            <div className="grid grid-cols-8">
-              <p className=" p-2">{player.POS}</p>
+      <div>
+        {sortedGolfData.map((playerData) => (
+          <div key={playerData.id} className="grid-rows-2 uppercase text-center">
+            <div className="grid grid-cols-8 border-b mx-1">
+              <p className=" p-2">{playerData.POS}</p>
               <p
-                className=" flex items-center gap-4 col-span-3 border-l p-2 pl-10 text-left cursor-pointer hover:underline decoration-[#0B6623]"
+                className=" flex items-center gap-4 col-span-3 p-2 pl-10 text-left cursor-pointer hover:underline decoration-[#0B6623]"
                 onClick={openScore}
               >
-                {player.PLAYER}
+                {playerData.PLAYER}
                 {/* <FaChevronDown /> */}
               </p>
-              <p className="border-l p-2">{player["TO PAR"]}</p>
-              <p className="border-l p-2">{player.THRU}</p>
-              <p className="border-l p-2 ">{player.ROUND}</p>
-              <p className="border-l p-2 ">{player.GROSS}</p>
+              <p className="p-2">{playerData["TO PAR"]}</p>
+              <p className="p-2">{playerData.THRU}</p>
+              <p className="p-2 ">{playerData.ROUND}</p>
+              <p className="p-2 ">{playerData.GROSS}</p>
             </div>
-            <div>{isOpen && <Score />}</div>
+            <div>{isOpen && <Score playerData={playerData} />}</div>
           </div>
         ))}
       </div>
