@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Player from "./Player";
 import { yardsData, parData, round } from "../../constants";
 import Eagle from "./Eagle";
@@ -12,6 +12,45 @@ const Score = ({ playerData }) => {
 
   const frontNine = Array.from({ length: 9 }, (_, index) => index + 1);
   const backNine = Array.from({ length: 9 }, (_, index) => index + 10);
+
+  const parValuesFront = Array.from(
+    { length: 9 },
+    (_, index) => parData[`hole${index + 1}`]
+  );
+  const totalParFront = parValuesFront.reduce((acc, val) => acc + val, 0);
+
+  const parValuesBack = Array.from(
+    { length: 9 },
+    (_, index) => parData[`hole${index + 1}`]
+  );
+  const totalParBack = parValuesBack.reduce((acc, val) => acc + val, 0);
+
+  const frontNineYards = frontNine.map(
+    (holeNumber) => yardsData[`hole${holeNumber}`]
+  );
+  const totalFrontNineYards = frontNineYards.reduce(
+    (acc, yards) => acc + yards,
+    0
+  );
+
+  const backNineYards = backNine.map(
+    (holeNumber) => yardsData[`hole${holeNumber}`]
+  );
+
+  const totalBackNineYards = backNineYards.reduce(
+    (acc, yards) => acc + yards,
+    0
+  );
+
+  const totalFrontNineScores = frontNine.reduce(
+    (acc, holeNumber) => acc + round[`hole${holeNumber}`],
+    0
+  );
+
+  const totalBackNineScores = backNine.reduce(
+    (acc, holeNumber) => acc + round[`hole${holeNumber}`],
+    0
+  );
 
   return (
     <div className="rounded-md bg-[#f1f1f1]">
@@ -38,24 +77,24 @@ const Score = ({ playerData }) => {
               {frontNine.map((holeNumber) => (
                 <td key={holeNumber}>{parData[`hole${holeNumber}`]}</td>
               ))}
-              <td className="bg-[#FAFAD2]">36</td>
+              <td className="bg-[#FAFAD2]">{totalParFront}</td>
               {backNine.map((holeNumber) => (
                 <td key={holeNumber}>{parData[`hole${holeNumber}`]}</td>
               ))}
-              <td className="bg-[#A45A52]">35</td>
-              <td>71</td>
+              <td className="bg-[#A45A52]">{totalParBack}</td>
+              <td>{totalParFront + totalParBack}</td>
             </tr>
             <tr>
               <td className="text-left p-2">yards</td>
               {frontNine.map((holeNumber) => (
                 <td key={holeNumber}>{yardsData[`hole${holeNumber}`]}</td>
               ))}
-              <td className="bg-[#FAFAD2]">3600</td>
+              <td className="bg-[#FAFAD2]">{totalFrontNineYards}</td>
               {backNine.map((holeNumber) => (
                 <td key={holeNumber}>{yardsData[`hole${holeNumber}`]}</td>
               ))}
-              <td className="bg-[#A45A52]">3500</td>
-              <td>7100</td>
+              <td className="bg-[#A45A52]">{totalBackNineYards}</td>
+              <td>{totalFrontNineYards + totalBackNineYards}</td>
             </tr>
             <tr className="bg-[#90EE90]/[0.2]">
               <td className="text-left p-2">round</td>
@@ -70,7 +109,7 @@ const Score = ({ playerData }) => {
                   </div>
                 </td>
               ))}
-              <td className="bg-[#FAFAD2]">{round.out}</td>
+              <td className="bg-[#FAFAD2]">{totalFrontNineScores}</td>
               {backNine.map((holeNumber) => (
                 <td key={holeNumber} className="relative">
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -82,8 +121,8 @@ const Score = ({ playerData }) => {
                   </div>
                 </td>
               ))}
-              <td className="bg-[#A45A52]">{round.in}</td>
-              <td>{round.total}</td>
+              <td className="bg-[#A45A52]">{totalBackNineScores}</td>
+              <td>{totalFrontNineScores + totalBackNineScores}</td>
             </tr>
           </tbody>
         </table>

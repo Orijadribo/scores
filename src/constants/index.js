@@ -5,8 +5,8 @@ const golfData = [
     PLAYER: "Sarah Brown",
     "TO PAR": 0,
     THRU: 9,
-    ROUND: 0, // Set ROUND and TO PAR to the same value
-    GROSS: 45, // Assuming 45 strokes for demonstration purposes
+    ROUND: 0, 
+    GROSS: 45, 
   },
   {
     id: 2,
@@ -14,8 +14,8 @@ const golfData = [
     PLAYER: "Olivia Miller",
     "TO PAR": -4,
     THRU: 17,
-    ROUND: -4, // Set ROUND and TO PAR to the same value
-    GROSS: 68, // Assuming 68 strokes for demonstration purposes
+    ROUND: -4, 
+    GROSS: 68, 
   },
   {
     id: 3,
@@ -23,8 +23,8 @@ const golfData = [
     PLAYER: "Michael Davis",
     "TO PAR": -3,
     THRU: 18,
-    ROUND: -3, // Set ROUND and TO PAR to the same value
-    GROSS: 71, // Assuming 71 strokes for demonstration purposes
+    ROUND: -3, 
+    GROSS: 71,
   },
   {
     id: 4,
@@ -32,8 +32,8 @@ const golfData = [
     PLAYER: "Jessica White",
     "TO PAR": -2,
     THRU: 16,
-    ROUND: -2, // Set ROUND and TO PAR to the same value
-    GROSS: "-", // Not completed, so using a dash
+    ROUND: -2, 
+    GROSS: "-",
   },
   {
     id: 5,
@@ -41,8 +41,8 @@ const golfData = [
     PLAYER: "John Smith",
     "TO PAR": -1,
     THRU: 12,
-    ROUND: -1, // Set ROUND and TO PAR to the same value
-    GROSS: "-", // Not completed, so using a dash
+    ROUND: -1, 
+    GROSS: "-",
   },
   {
     id: 6,
@@ -50,8 +50,8 @@ const golfData = [
     PLAYER: "Emily Johnson",
     "TO PAR": 2,
     THRU: 15,
-    ROUND: 2, // Set ROUND and TO PAR to the same value
-    GROSS: "-", // Not completed, so using a dash
+    ROUND: 2, 
+    GROSS: "-",
   },
   {
     id: 7,
@@ -59,8 +59,8 @@ const golfData = [
     PLAYER: "Matthew Taylor",
     "TO PAR": 1,
     THRU: 11,
-    ROUND: 1, // Set ROUND and TO PAR to the same value
-    GROSS: "-", // Not completed, so using a dash
+    ROUND: 1, 
+    GROSS: "-",
   },
   {
     id: 8,
@@ -68,8 +68,8 @@ const golfData = [
     PLAYER: "Ava Rodriguez",
     "TO PAR": 1,
     THRU: 10,
-    ROUND: 1, // Set ROUND and TO PAR to the same value
-    GROSS: "-", // Not completed, so using a dash
+    ROUND: 1, 
+    GROSS: "-",
   },
   {
     id: 9,
@@ -77,8 +77,8 @@ const golfData = [
     PLAYER: "Daniel Lee",
     "TO PAR": 1,
     THRU: 14,
-    ROUND: 1, // Set ROUND and TO PAR to the same value
-    GROSS: "-", // Not completed, so using a dash
+    ROUND: 1, 
+    GROSS: "-",
   },
   {
     id: 10,
@@ -86,8 +86,8 @@ const golfData = [
     PLAYER: "Ethan Wilson",
     "TO PAR": 3,
     THRU: 13,
-    ROUND: 3, // Set ROUND and TO PAR to the same value
-    GROSS: "-", // Not completed, so using a dash
+    ROUND: 3, 
+    GROSS: "-",
   },
 ];
 
@@ -133,7 +133,7 @@ const parData = {
   hole18: 4,
 };
  const round = {
-   hole1: 4,
+   hole1: 3,
    hole2: 5,
    hole3: 3,
    hole4: 4,
@@ -142,18 +142,15 @@ const parData = {
    hole7: 3,
    hole8: 5,
    hole9: 6,
-   out: 40,
    hole10: 4,
    hole11: 5,
    hole12: 3,
    hole13: 4,
-   hole14: 5,
+   hole14:2,
    hole15: 4,
    hole16: 6,
    hole17: 5,
    hole18: 6,
-   in: 42,
-   total: 82,
  };
 
 
