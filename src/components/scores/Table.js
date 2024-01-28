@@ -48,7 +48,7 @@ const Table = () => {
               <p className="p-2 ">{playerData.ROUND}</p>
               <p className="p-2 ">{playerData.GROSS}</p>
             </div>
-            <div>{isOpen && <Score playerData={playerData} />}</div>
+            <div>{currentPlayer === playerData.id && isOpen && <Score playerData={playerData} />}</div>
           </div>
         ))}
       </div>
