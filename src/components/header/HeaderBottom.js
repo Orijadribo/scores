@@ -4,7 +4,7 @@ import { FaChevronDown } from "react-icons/fa6";
 const HeaderBottom = () => {
   const [showGross, setShowGross] = useState(false);
   const [gender, setGender] = useState(false);
-  const [scoringType, setScoringType] = useState("gross");
+  const [scoringType, setScoringType] = useState("Gross");
   const [genderSelected, setGenderSelected] = useState("Male");
 
   const showScoring = () => {
@@ -15,8 +15,9 @@ const HeaderBottom = () => {
     setGender(!gender);
   };
 
-  const handleScoringChange = () => {
+  const handleScoringChange = (scoringType) => {
     setShowGross(false);
+    setScoringType(scoringType)
   };
 
   const handleGenderChange = (selectedGender) => {
@@ -26,7 +27,8 @@ const HeaderBottom = () => {
 
   useEffect(() => {
     console.log(genderSelected);
-  }, [genderSelected]);
+    console.log(scoringType);
+  }, [genderSelected, scoringType]);
 
   return (
     <div className="flex items-center justify-center gap-10 p-5">
@@ -43,14 +45,14 @@ const HeaderBottom = () => {
           <ul className="bg-white border rounded-md p-1 absolute top-7 w-full">
             <li
               className="p-2 rounded-sm cursor-pointer hover:bg-[#90EE90]/[0.1]"
-              onClick={handleScoringChange}
+              onClick={() => handleScoringChange("Gross")}
             >
               Gross
             </li>
             <hr className="m-1" />
             <li
               className="p-2 rounded-sm cursor-pointer hover:bg-[#90EE90]/[0.1]"
-              onClick={handleScoringChange}
+              onClick={() => handleScoringChange("Net")}
             >
               Net
             </li>
