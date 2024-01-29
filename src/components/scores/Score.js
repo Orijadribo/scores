@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Player from "./Player";
-import { yardsData, parData, round } from "../../constants";
+import { yardsData, parData, round, golfData } from "../../constants";
 import Eagle from "./Eagle";
 import Birdie from "./Birdie";
 import Bogey from "./Bogey";
@@ -102,7 +102,7 @@ const Score = ({ playerData }) => {
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                       <ScoreType
                         hideScore={hideScore}
-                        hole1={round[`hole${holeNumber}`]}
+                        // hole={round[`hole${holeNumber}`]}
                         parData={parData[`hole${holeNumber}`]}
                       />
                     </div>
@@ -118,7 +118,7 @@ const Score = ({ playerData }) => {
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                       <ScoreType
                         hideScore={hideScore}
-                        hole1={round[`hole${holeNumber}`]}
+                        hole={round[`hole${holeNumber}`]}
                         parData={parData[`hole${holeNumber}`]}
                       />
                     </div>

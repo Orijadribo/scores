@@ -26,8 +26,8 @@ const HeaderBottom = () => {
   };
 
   useEffect(() => {
-    console.log(genderSelected);
-    console.log(scoringType);
+    // console.log(genderSelected);
+    // console.log(scoringType);
   }, [genderSelected, scoringType]);
 
   return (
