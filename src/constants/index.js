@@ -6,7 +6,6 @@ const golfData = [
     "TO PAR": -2,
     THRU: 14,
     ROUND: 3,
-    GROSS: 78,
     round: {
       hole1: 5,
       hole2: 3,
@@ -35,7 +34,6 @@ const golfData = [
     "TO PAR": 1,
     THRU: 10,
     ROUND: -1,
-    GROSS: "-",
     round: {
       hole1: 6,
       hole2: 4,
@@ -64,7 +62,6 @@ const golfData = [
     "TO PAR": 3,
     THRU: 15,
     ROUND: 2,
-    GROSS: "-",
     round: {
       hole1: 4,
       hole2: 3,
@@ -93,7 +90,6 @@ const golfData = [
     "TO PAR": 0,
     THRU: 18,
     ROUND: 1,
-    GROSS: 72,
     round: {
       hole1: 6,
       hole2: 4,
@@ -122,7 +118,6 @@ const golfData = [
     "TO PAR": -1,
     THRU: 13,
     ROUND: -2,
-    GROSS: "-",
     round: {
       hole1: 5,
       hole2: 4,
@@ -151,7 +146,6 @@ const golfData = [
     "TO PAR": 2,
     THRU: 12,
     ROUND: -1,
-    GROSS: "-",
     round: {
       hole1: 4,
       hole2: 3,
@@ -180,7 +174,6 @@ const golfData = [
     "TO PAR": 1,
     THRU: 11,
     ROUND: 2,
-    GROSS: "-",
     round: {
       hole1: 6,
       hole2: 4,
@@ -209,7 +202,6 @@ const golfData = [
     "TO PAR": 1,
     THRU: 9,
     ROUND: 1,
-    GROSS: 75,
     round: {
       hole1: 6,
       hole2: 3,
@@ -238,7 +230,6 @@ const golfData = [
     "TO PAR": -1,
     THRU: 14,
     ROUND: 0,
-    GROSS: 72,
     round: {
       hole1: 5,
       hole2: 4,
@@ -267,7 +258,6 @@ const golfData = [
     "TO PAR": 3,
     THRU: 13,
     ROUND: 3,
-    GROSS: "-",
     round: {
       hole1: 5,
       hole2: 4,

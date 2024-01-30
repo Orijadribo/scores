@@ -13,8 +13,8 @@ const Score = ({ playerData, playerId }) => {
 
   // Find the player in the golfData array
   const selectedPlayer = golfData.find((player) => player.id === playerId);
-  console.log(selectedPlayer);
-  console.log(golfData);
+  // console.log(selectedPlayer);
+  // console.log(golfData);
 
   const frontNine = Array.from({ length: 9 }, (_, index) => index + 1);
   const backNine = Array.from({ length: 9 }, (_, index) => index + 10);

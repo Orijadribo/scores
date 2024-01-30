@@ -11,7 +11,7 @@ const Player = ({ playerData }) => {
 
           <p>{playerData.PLAYER}</p>
         </div>
-        <div className="flex items-center justify-center  flex-grow">
+        <div className="flex items-center justify-center text-3xl font-titleFont flex-grow">
           round 1 Score Card
         </div>
       </div>
