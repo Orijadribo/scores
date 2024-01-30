@@ -36,6 +36,50 @@ const Table = () => {
     (a, b) => scoreToPar(a) - scoreToPar(b)
   );
 
+  // Create an array to store positions
+  const positions = sortedGolfData.map((_, index) => index + 1);
+
+  // Check for tied positions
+  let currentPosition = 1;
+  let previousScoreToPar = null;
+
+  positions.forEach((position, index) => {
+    const currentScoreToPar = scoreToPar(sortedGolfData[index]);
+
+    if (
+      previousScoreToPar !== null &&
+      currentScoreToPar !== previousScoreToPar
+    ) {
+      currentPosition = index + 1;
+    }
+
+    positions[index] = currentPosition;
+    previousScoreToPar = currentScoreToPar;
+  });
+
+  // Add "T" prefix to tied positions
+  const tiedPositions = new Set();
+  positions.forEach((position, index) => {
+    if (index > 0 && positions[index] === positions[index - 1]) {
+      tiedPositions.add(position);
+    }
+  });
+
+  tiedPositions.forEach((tiedPosition) => {
+    const tiedIndices = positions.reduce((acc, position, index) => {
+      if (position === tiedPosition) {
+        acc.push(index);
+      }
+      return acc;
+    }, []);
+
+    if (tiedIndices.length > 1) {
+      tiedIndices.forEach((index) => {
+        positions[index] = "T" + tiedPosition;
+      });
+    }
+  });
+
   const openScore = (id) => {
     setIsOpen(!isOpen);
     isOpen ? setCurrentPlayer(null) : setCurrentPlayer(id);
@@ -57,13 +101,13 @@ const Table = () => {
         <p className="p-5">gross</p>
       </div>
       <div>
-        {sortedGolfData.map((playerData) => (
+        {sortedGolfData.map((playerData, index) => (
           <div
             key={playerData.id}
             className="grid-rows-2 uppercase text-center hover:bg-[#90EE90]/[0.1]"
           >
             <div className="grid grid-cols-8 border-b mx-1 ">
-              <p className=" p-2">{playerData.POS}</p>
+              <p className=" p-2">{positions[index]}</p>
               <p
                 className=" flex items-center gap-4 col-span-3 p-2 pl-10 text-left cursor-pointer hover:underline decoration-[#0B6623]"
                 onClick={() => openScore(playerData.id)}
@@ -72,8 +116,7 @@ const Table = () => {
               </p>
               <p className="p-2">{scoreToPar(playerData)}</p>
               <p className="p-2">{playerData.THRU}</p>
-              <p className="p-2 ">{playerData.ROUND}</p>
-              {/* <p className="p-2 ">{playerData.GROSS}</p> */}
+              <p className="p-2 ">{scoreToPar(playerData)}</p>
               <p className="p-2 ">{getGross(playerData)}</p>
             </div>
             <div>

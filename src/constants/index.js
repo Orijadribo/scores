@@ -1,11 +1,8 @@
 const golfData = [
   {
     id: 1,
-    POS: 1,
     PLAYER: "Emma Johnson",
-    "TO PAR": -2,
     THRU: 14,
-    ROUND: 3,
     round: {
       hole1: 5,
       hole2: 3,
@@ -29,11 +26,8 @@ const golfData = [
   },
   {
     id: 2,
-    POS: 2,
     PLAYER: "Liam Wilson",
-    "TO PAR": 1,
     THRU: 10,
-    ROUND: -1,
     round: {
       hole1: 6,
       hole2: 4,
@@ -57,11 +51,9 @@ const golfData = [
   },
   {
     id: 3,
-    POS: 3,
     PLAYER: "Olivia Brown",
     "TO PAR": 3,
     THRU: 15,
-    ROUND: 2,
     round: {
       hole1: 4,
       hole2: 3,
@@ -85,11 +77,9 @@ const golfData = [
   },
   {
     id: 4,
-    POS: 4,
     PLAYER: "Noah Smith",
     "TO PAR": 0,
     THRU: 18,
-    ROUND: 1,
     round: {
       hole1: 6,
       hole2: 4,
@@ -113,11 +103,9 @@ const golfData = [
   },
   {
     id: 5,
-    POS: 5,
     PLAYER: "Ava Davis",
     "TO PAR": -1,
     THRU: 13,
-    ROUND: -2,
     round: {
       hole1: 5,
       hole2: 4,
@@ -141,11 +129,9 @@ const golfData = [
   },
   {
     id: 6,
-    POS: 6,
     PLAYER: "Sophia Taylor",
     "TO PAR": 2,
     THRU: 12,
-    ROUND: -1,
     round: {
       hole1: 4,
       hole2: 3,
@@ -169,11 +155,9 @@ const golfData = [
   },
   {
     id: 7,
-    POS: 7,
     PLAYER: "Jackson Rodriguez",
     "TO PAR": 1,
     THRU: 11,
-    ROUND: 2,
     round: {
       hole1: 6,
       hole2: 4,
@@ -197,11 +181,9 @@ const golfData = [
   },
   {
     id: 8,
-    POS: 8,
     PLAYER: "Lucas Lee",
     "TO PAR": 1,
     THRU: 9,
-    ROUND: 1,
     round: {
       hole1: 6,
       hole2: 3,
@@ -225,11 +207,9 @@ const golfData = [
   },
   {
     id: 9,
-    POS: 9,
     PLAYER: "Isabella Wilson",
     "TO PAR": -1,
     THRU: 14,
-    ROUND: 0,
     round: {
       hole1: 5,
       hole2: 4,
@@ -253,11 +233,9 @@ const golfData = [
   },
   {
     id: 10,
-    POS: 10,
     PLAYER: "Mia Smith",
     "TO PAR": 3,
     THRU: 13,
-    ROUND: 3,
     round: {
       hole1: 5,
       hole2: 4,
