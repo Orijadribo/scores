@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Player from "./Player";
-import { yardsData, parData, round, golfData } from "../../constants";
+import { yardsData, parData, golfData } from "../../constants";
 import Eagle from "./Eagle";
 import Birdie from "./Birdie";
 import Bogey from "./Bogey";
@@ -48,11 +48,11 @@ const Score = ({ playerData, playerId }) => {
   );
 
   const totalFrontNineScores = frontNine.reduce((acc, holeNumber) => {
-    const holeScore = round[`hole${holeNumber}`];
+    const holeScore = selectedPlayer.round[`hole${holeNumber}`];
     return acc + (Number.isFinite(holeScore) ? holeScore : 0);
   }, 0);
   const totalBackNineScores = backNine.reduce((acc, holeNumber) => {
-    const holeScore = round[`hole${holeNumber}`];
+    const holeScore = selectedPlayer.round[`hole${holeNumber}`];
     return acc + (Number.isFinite(holeScore) ? holeScore : 0);
   }, 0);
 
@@ -121,17 +121,18 @@ const Score = ({ playerData, playerId }) => {
                     ? totalFrontNineScores
                     : "-"}
                 </td>
-                {backNine.map((holeNumber) => (
-                  <td key={holeNumber} className="relative">
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                      <ScoreType
-                        hideScore={hideScore}
-                        hole={round[`hole${holeNumber}`]}
-                        parData={parData[`hole${holeNumber}`]}
-                      />
-                    </div>
-                  </td>
-                ))}
+                {selectedPlayer &&
+                  backNine.map((holeNumber) => (
+                    <td key={holeNumber} className="relative">
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <ScoreType
+                          hideScore={hideScore}
+                          hole={selectedPlayer.round[`hole${holeNumber}`]}
+                          parData={parData[`hole${holeNumber}`]}
+                        />
+                      </div>
+                    </td>
+                  ))}
                 <td className="bg-[#A45A52]">
                   {Number.isFinite(totalBackNineScores)
                     ? totalBackNineScores
