@@ -7,8 +7,14 @@ import Bogey from "./Bogey";
 import DBogey from "./DBogey";
 import ScoreType from "./ScoreType";
 
-const Score = ({ playerData }) => {
+const Score = ({ playerData, playerId }) => {
   const [hideScore, setHideScore] = useState(false);
+
+
+  // Find the player in the golfData array
+  const selectedPlayer = golfData.find((player) => player.id === playerId);
+  console.log(selectedPlayer);
+  console.log(golfData);
 
   const frontNine = Array.from({ length: 9 }, (_, index) => index + 1);
   const backNine = Array.from({ length: 9 }, (_, index) => index + 10);
@@ -97,17 +103,19 @@ const Score = ({ playerData }) => {
               </tr>
               <tr className="bg-[#90EE90]/[0.2]">
                 <td className="text-left p-2">round</td>
-                {frontNine.map((holeNumber) => (
-                  <td key={holeNumber} className="relative">
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                      <ScoreType
-                        hideScore={hideScore}
-                        // hole={round[`hole${holeNumber}`]}
-                        parData={parData[`hole${holeNumber}`]}
-                      />
-                    </div>
-                  </td>
-                ))}
+                {selectedPlayer &&
+                  frontNine.map((holeNumber) => (
+                    <td key={holeNumber} className="relative">
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <ScoreType
+                          hideScore={hideScore}
+                          hole={selectedPlayer.round[`hole${holeNumber}`]}
+                          parData={parData[`hole${holeNumber}`]}
+                        />
+                      </div>
+                    </td>
+                  ))}
+
                 <td className="bg-[#FAFAD2]">
                   {Number.isFinite(totalFrontNineScores)
                     ? totalFrontNineScores

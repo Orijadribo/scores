@@ -50,7 +50,7 @@ const Table = () => {
             </div>
             <div>
               {currentPlayer === playerData.id && isOpen && (
-                <Score playerData={playerData} />
+                <Score playerData={playerData} playerId={playerData.id}/>
               )}
             </div>
           </div>
