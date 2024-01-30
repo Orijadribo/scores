@@ -25,7 +25,7 @@ const Score = ({ playerData, playerId }) => {
   );
   const parValuesBack = Array.from(
     { length: 9 },
-    (_, index) => parData[`hole${index + 1}`]
+    (_, index) => parData[`hole${index + 10}`]
   );
 
   const totalParFront = parValuesFront.reduce((acc, val) => acc + val, 0);

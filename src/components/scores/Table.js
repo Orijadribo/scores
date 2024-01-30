@@ -6,12 +6,9 @@ const Table = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState(null);
 
-  const sortedGolfData = [...golfData].sort(
-    (a, b) => a["TO PAR"] - b["TO PAR"]
-  );
-
   const frontNine = Array.from({ length: 9 }, (_, index) => index + 1);
   const backNine = Array.from({ length: 9 }, (_, index) => index + 10);
+  const allHoles = Array.from({ length: 18 }, (_, index) => index + 1);
 
   const getGross = (playerData) => {
     const totalFrontNineScores = frontNine.reduce((acc, holeNumber) => {
@@ -25,43 +22,19 @@ const Table = () => {
     const totalGross = totalFrontNineScores + totalBackNineScores;
     return totalGross;
   };
-  // // Find the player in the golfData array
-  // const selectedPlayer = golfData.find((player) => player.id === playerId);
-  // console.log(selectedPlayer);
-  // console.log(golfData);
 
-  // const frontNine = Array.from({ length: 9 }, (_, index) => index + 1);
-  // const backNine = Array.from({ length: 9 }, (_, index) => index + 10);
+  const scoreToPar = (playerData) => {
+    const scoreToPar = allHoles.reduce((acc, holeNumber) => {
+      const holeScore =
+        playerData.round[`hole${holeNumber}`] - parData[`hole${holeNumber}`];
+      return acc + (Number.isFinite(holeScore) ? holeScore : 0);
+    }, 0);
+    return scoreToPar;
+  };
 
-  // const parValuesFront = Array.from(
-  //   { length: 9 },
-  //   (_, index) => parData[`hole${index + 1}`]
-  // );
-  // const parValuesBack = Array.from(
-  //   { length: 9 },
-  //   (_, index) => parData[`hole${index + 1}`]
-  // );
-
-  // const totalParFront = parValuesFront.reduce((acc, val) => acc + val, 0);
-  // const totalParBack = parValuesBack.reduce((acc, val) => acc + val, 0);
-
-  // const frontNineYards = frontNine.map(
-  //   (holeNumber) => yardsData[`hole${holeNumber}`]
-  // );
-  // const backNineYards = backNine.map(
-  //   (holeNumber) => yardsData[`hole${holeNumber}`]
-  // );
-
-  // const totalFrontNineScores = frontNine.reduce((acc, holeNumber) => {
-  //   const holeScore = selectedPlayer.round[`hole${holeNumber}`];
-  //   return acc + (Number.isFinite(holeScore) ? holeScore : 0);
-  // }, 0);
-  // const totalBackNineScores = backNine.reduce((acc, holeNumber) => {
-  //   const holeScore = selectedPlayer.round[`hole${holeNumber}`];
-  //   return acc + (Number.isFinite(holeScore) ? holeScore : 0);
-  // }, 0);
-
-  // const totalGross = totalFrontNineScores + totalBackNineScores;
+  const sortedGolfData = [...golfData].sort(
+    (a, b) => scoreToPar(a) - scoreToPar(b)
+  );
 
   const openScore = (id) => {
     setIsOpen(!isOpen);
@@ -97,7 +70,7 @@ const Table = () => {
               >
                 {playerData.PLAYER}
               </p>
-              <p className="p-2">{playerData["TO PAR"]}</p>
+              <p className="p-2">{scoreToPar(playerData)}</p>
               <p className="p-2">{playerData.THRU}</p>
               <p className="p-2 ">{playerData.ROUND}</p>
               {/* <p className="p-2 ">{playerData.GROSS}</p> */}
