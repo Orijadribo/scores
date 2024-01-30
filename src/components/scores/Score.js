@@ -7,17 +7,19 @@ import Bogey from "./Bogey";
 import DBogey from "./DBogey";
 import ScoreType from "./ScoreType";
 
-const Score = ({ playerData, playerId }) => {
+const Score = ({
+  playerData,
+  playerId,
+  totalGross,
+  frontNine,
+  backNine,
+  grossFront,
+  grossBack,
+}) => {
   const [hideScore, setHideScore] = useState(false);
-
 
   // Find the player in the golfData array
   const selectedPlayer = golfData.find((player) => player.id === playerId);
-  // console.log(selectedPlayer);
-  // console.log(golfData);
-
-  const frontNine = Array.from({ length: 9 }, (_, index) => index + 1);
-  const backNine = Array.from({ length: 9 }, (_, index) => index + 10);
 
   const parValuesFront = Array.from(
     { length: 9 },
@@ -46,15 +48,6 @@ const Score = ({ playerData, playerId }) => {
     (acc, yards) => acc + yards,
     0
   );
-
-  const totalFrontNineScores = frontNine.reduce((acc, holeNumber) => {
-    const holeScore = selectedPlayer.round[`hole${holeNumber}`];
-    return acc + (Number.isFinite(holeScore) ? holeScore : 0);
-  }, 0);
-  const totalBackNineScores = backNine.reduce((acc, holeNumber) => {
-    const holeScore = selectedPlayer.round[`hole${holeNumber}`];
-    return acc + (Number.isFinite(holeScore) ? holeScore : 0);
-  }, 0);
 
   return (
     <div className="rounded-md bg-[#f1f1f1]">
@@ -117,9 +110,7 @@ const Score = ({ playerData, playerId }) => {
                   ))}
 
                 <td className="bg-[#FAFAD2]">
-                  {Number.isFinite(totalFrontNineScores)
-                    ? totalFrontNineScores
-                    : "-"}
+                  {Number.isFinite(grossFront) ? grossFront : "-"}
                 </td>
                 {selectedPlayer &&
                   backNine.map((holeNumber) => (
@@ -134,11 +125,9 @@ const Score = ({ playerData, playerId }) => {
                     </td>
                   ))}
                 <td className="bg-[#A45A52]">
-                  {Number.isFinite(totalBackNineScores)
-                    ? totalBackNineScores
-                    : "-"}
+                  {Number.isFinite(grossBack) ? grossBack : "-"}
                 </td>
-                <td>{totalFrontNineScores + totalBackNineScores}</td>
+                <td>{totalGross}</td>
               </tr>
             </tbody>
           </table>

@@ -10,16 +10,22 @@ const Table = () => {
   const backNine = Array.from({ length: 9 }, (_, index) => index + 10);
   const allHoles = Array.from({ length: 18 }, (_, index) => index + 1);
 
+  const getGrossFront = (playerData) => {
+    return frontNine.reduce((acc, holeNumber) => {
+      const holeScore = playerData.round[`hole${holeNumber}`];
+      return acc + (Number.isFinite(holeScore) ? holeScore : 0);
+    }, 0);
+  };
+
+  const getGrossBack = (playerData) => {
+    return backNine.reduce((acc, holeNumber) => {
+      const holeScore = playerData.round[`hole${holeNumber}`];
+      return acc + (Number.isFinite(holeScore) ? holeScore : 0);
+    }, 0);
+  };
+
   const getGross = (playerData) => {
-    const totalFrontNineScores = frontNine.reduce((acc, holeNumber) => {
-      const holeScore = playerData.round[`hole${holeNumber}`];
-      return acc + (Number.isFinite(holeScore) ? holeScore : 0);
-    }, 0);
-    const totalBackNineScores = backNine.reduce((acc, holeNumber) => {
-      const holeScore = playerData.round[`hole${holeNumber}`];
-      return acc + (Number.isFinite(holeScore) ? holeScore : 0);
-    }, 0);
-    const totalGross = totalFrontNineScores + totalBackNineScores;
+    const totalGross = getGrossFront(playerData) + getGrossBack(playerData);
     return totalGross;
   };
 
@@ -121,7 +127,15 @@ const Table = () => {
             </div>
             <div>
               {currentPlayer === playerData.id && isOpen && (
-                <Score playerData={playerData} playerId={playerData.id} />
+                <Score
+                  playerData={playerData}
+                  playerId={playerData.id}
+                  totalGross={getGross(playerData)}
+                  frontNine={frontNine}
+                  backNine={backNine}
+                  grossFront={getGrossFront(playerData)}
+                  grossBack={getGrossBack(playerData)}
+                />
               )}
             </div>
           </div>
