@@ -15,10 +15,10 @@ const Footer = () => {
         <div className="">
           <h4 className="py-2 font-titleFont text-xl font-bold">Contact Us</h4>
           <div className="text-sm">
-            <p>Wesnile Golf Club</p>
-            <p>1234 Fairway Lane</p>
-            <p>City, State 12345</p>
-            <p>Email: info@wesnilegolfclub.com</p>
+            <p>WestNile Golf Club</p>
+            <p>Weatherhead ParkLane</p>
+            <p> Arua City, Uganda</p>
+            <p>Email: info@westnilegolfclub.com</p>
             <p>Phone: +256 789 012345</p>
           </div>
         </div>
