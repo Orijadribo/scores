@@ -33,7 +33,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="hover:underline"
               >
-                Facebook
+                westnilegolfclub
               </a>
             </li>
             <li className="flex items-center justify-start gap-4 cursor-pointer">
@@ -44,7 +44,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="hover:underline"
               >
-                Twitter
+                @westnilegolfclub
               </a>
             </li>
             <li className="flex items-center justify-start gap-4 cursor-pointer">
@@ -55,7 +55,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="hover:underline"
               >
-                Instagram
+                @westnilegolfclub
               </a>
             </li>
           </ul>

@@ -17,7 +17,7 @@ const HeaderBottom = () => {
 
   const handleScoringChange = (scoringType) => {
     setShowGross(false);
-    setScoringType(scoringType)
+    setScoringType(scoringType);
   };
 
   const handleGenderChange = (selectedGender) => {
@@ -32,14 +32,16 @@ const HeaderBottom = () => {
 
   return (
     <div className="flex items-center justify-center gap-4 p-5">
-      <div className="flex items-center gap-2 relative">
+      <div
+        className="cursor-pointer flex items-center gap-2 relative"
+        onClick={showScoring}
+      >
         Scoring
         {/* TO add a transition effect to the drop down using useContext */}
         <FaChevronDown
-          className={`cursor-pointer transition-transform duration-500 transform ${
+          className={`cursor-pointer transition-transform text-xs duration-500 transform ${
             showGross ? "rotate-180" : "rotate-0"
           }`}
-          onClick={showScoring}
         />
         {showGross && (
           <ul className="bg-white border rounded-md p-1 absolute top-7 w-full">
@@ -59,14 +61,16 @@ const HeaderBottom = () => {
           </ul>
         )}
       </div>
-      <div className="flex items-center gap-2 relative">
+      <div
+        className="cursor-pointer flex items-center gap-2 relative"
+        onClick={showGender}
+      >
         Gender
         {/* TO add a transition effect to the drop down  */}
         <FaChevronDown
-          className={`cursor-pointer transition-transform duration-500 transform ${
+          className={` transition-transform duration-500 text-xs transform ${
             gender ? "rotate-180" : "rotate-0"
           }`}
-          onClick={showGender}
         />
         {gender && (
           <ul className="bg-white border rounded-md p-1 absolute top-7 w-full">
