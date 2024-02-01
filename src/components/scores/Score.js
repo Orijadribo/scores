@@ -132,11 +132,15 @@ const Score = ({
             </tbody>
           </table>
         </div>
-        <div className="flex items-center justify-center gap-4 pt-5">
-          <Eagle hideScore={true} />
-          <Birdie hideScore={true} />
-          <Bogey hideScore={true} />
-          <DBogey hideScore={true} />
+        <div className="flex flex-wrap md:flex-nowrap items-start justify-center gap-4 pt-5">
+          <div className="flex gap-4">
+            <Eagle hideScore={true} />
+            <Birdie hideScore={true} />
+          </div>
+          <div className="flex gap-4">
+            <Bogey hideScore={true} />
+            <DBogey hideScore={true} />
+          </div>
         </div>
       </div>
     </div>

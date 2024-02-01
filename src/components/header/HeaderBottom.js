@@ -31,7 +31,7 @@ const HeaderBottom = () => {
   }, [genderSelected, scoringType]);
 
   return (
-    <div className="flex items-center justify-center gap-10 p-5">
+    <div className="flex items-center justify-center gap-4 p-5">
       <div className="flex items-center gap-2 relative">
         Scoring
         {/* TO add a transition effect to the drop down using useContext */}

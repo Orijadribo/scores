@@ -120,14 +120,19 @@ const Table = () => {
   }, [isOpen, currentPlayer]);
 
   return (
-    <div>
-      <div className="grid grid-cols-8 uppercase text-center text-white bg-[#0B6623] rounded-t-md">
-        <p className="p-5">pos</p>
-        <p className="col-span-3 p-5">player</p>
-        <p className="p-5">to par</p>
-        <p className="p-5">thru</p>
-        <p className="p-5">round</p>
-        <p className="p-5">gross</p>
+    <div className="text-sm md:text-base">
+      <div className="grid grid-cols-8 uppercase text-center text-white bg-[#0B6623] rounded-t-md p-2">
+        <p className="md:p-5 flex items-center justify-center">pos</p>
+        <p className="col-span-3 md:p-5 flex items-center justify-center">
+          player
+        </p>
+        <p className="md:p-5 flex items-center justify-center">to par</p>
+        <p className="md:p-5 flex items-center justify-center">thru</p>
+        <div className="md:p-5 flex items-center justify-center">
+          <p className="hidden md:block">round</p>
+          <p className="md:hidden block">rnd</p>
+        </div>
+        <p className="md:p-5 flex items-center justify-center">gross</p>
       </div>
       <div>
         {sortedGolfData.map((playerData, index) => (
@@ -136,27 +141,29 @@ const Table = () => {
             className="grid-rows-2 uppercase text-center "
           >
             <div className="grid grid-cols-8 hover:bg-[#90EE90]/[0.1] rounded-md">
-              <p className=" p-2">
+              <p className="flex items-center justify-center gap-4 p-2">
                 {playerData.round.hole1 !== undefined ? positions[index] : "-"}
               </p>
               <p
-                className=" flex items-center gap-4 col-span-3 p-2 pl-10 text-left cursor-pointer hover:underline decoration-[#0B6623]"
+                className=" flex items-center gap-4 col-span-3 p-2 md:pl-10 text-left cursor-pointer hover:underline decoration-[#0B6623]"
                 onClick={() => openScore(playerData.id)}
               >
                 {playerData.PLAYER}
               </p>
-              <p className="p-2">
+              <p className="flex items-center justify-center gap-4 p-2">
                 {(scoreToPar(playerData) === 0 &&
                   (playerData.round.hole1 !== undefined ? "E" : "-")) ||
                   scoreToPar(playerData)}
               </p>
-              <p className="p-2">{findThru(playerData)}</p>
-              <p className="p-2 ">
+              <p className="flex items-center justify-center gap-4 p-2">
+                {findThru(playerData)}
+              </p>
+              <p className="flex items-center justify-center gap-4 p-2 ">
                 {(scoreToPar(playerData) === 0 &&
                   (playerData.round.hole1 !== undefined ? "E" : "-")) ||
                   scoreToPar(playerData)}
               </p>
-              <p className="p-2 ">
+              <p className="flex items-center justify-center gap-4 p-2 ">
                 {getGross(playerData) !== 0 ? getGross(playerData) : "-"}
               </p>
             </div>
