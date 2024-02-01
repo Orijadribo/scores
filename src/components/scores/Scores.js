@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
+import {} from "react-icons/io5";
 import Table from "./Table";
 import { golfData } from "../../constants";
 
@@ -15,6 +17,11 @@ const Scores = () => {
 
     // Set searchOpen to true only if there's something typed in the input
     setSearchOpen(query.trim() !== "");
+  };
+
+  const handleClear = () => {
+    setSearchQuery("");
+    setSearchOpen(false);
   };
 
   const filteredData = golfData.filter((player) =>
@@ -37,7 +44,11 @@ const Scores = () => {
             value={searchQuery}
             onChange={handleSearch}
           ></input>
-          <FaSearch className="text-[#E1E1E1]" />
+          {!searchQuery ? (
+            <FaSearch className="text-[#E1E1E1]" />
+          ) : (
+            <IoClose className="text-[#606060] cursor-pointer" onClick={handleClear} />
+          )}
           {searchOpen && (
             <ul className="absolute bg-white rounded-md p-2 top-12 left-0 border w-full max-h-40 overflow-y-auto">
               {filteredData.map((player) => (
