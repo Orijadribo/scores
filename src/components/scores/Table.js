@@ -118,7 +118,7 @@ const Table = () => {
             key={playerData.id}
             className="grid-rows-2 uppercase text-center hover:bg-[#90EE90]/[0.1]"
           >
-            <div className="grid grid-cols-8 border-b mx-1 ">
+            <div className="grid grid-cols-8">
               <p className=" p-2">{positions[index]}</p>
               <p
                 className=" flex items-center gap-4 col-span-3 p-2 pl-10 text-left cursor-pointer hover:underline decoration-[#0B6623]"
@@ -127,7 +127,7 @@ const Table = () => {
                 {playerData.PLAYER}
               </p>
               <p className="p-2">{scoreToPar(playerData)}</p>
-              <p className="p-2">{playerData.THRU}</p>
+              <p className="p-2">{findThru(playerData)}</p>
               <p className="p-2 ">{scoreToPar(playerData)}</p>
               <p className="p-2 ">{getGross(playerData)}</p>
             </div>
