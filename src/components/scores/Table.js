@@ -87,8 +87,14 @@ const Table = () => {
   });
 
   const openScore = (id) => {
-    setIsOpen(!isOpen);
-    isOpen ? setCurrentPlayer(null) : setCurrentPlayer(id);
+    if (id === currentPlayer) {
+      setIsOpen(false);
+      setCurrentPlayer(null);
+    } else{
+
+      setIsOpen(true);
+      setCurrentPlayer(id);
+    }
   };
 
   useEffect(() => {
