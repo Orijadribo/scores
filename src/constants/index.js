@@ -2,8 +2,8 @@ const golfData = [
   {
     id: 1,
     PLAYER: "Emma Johnson",
-    THRU: 14,
     hcp: 4,
+    teeOffTime: "07:00 AM",
     round: {
       hole1: 5,
       hole2: 3,
@@ -22,14 +22,14 @@ const golfData = [
       hole15: 3,
       hole16: 3,
       hole17: 4,
-      hole18: 3,
+      hole18: "-",
     },
   },
   {
     id: 2,
     PLAYER: "Liam Wilson",
-    THRU: 10,
     hcp: 4,
+    teeOffTime: "07:30 AM",
     round: {
       hole1: 6,
       hole2: 4,
@@ -54,8 +54,8 @@ const golfData = [
   {
     id: 3,
     PLAYER: "Olivia Brown",
-    THRU: 15,
     hcp: 4,
+    teeOffTime: "08:00 AM",
     round: {
       hole1: 4,
       hole2: 3,
@@ -80,8 +80,8 @@ const golfData = [
   {
     id: 4,
     PLAYER: "Noah Smith",
-    THRU: 18,
     hcp: 4,
+    teeOffTime: "08:30 AM",
     round: {
       hole1: 6,
       hole2: 4,
@@ -106,8 +106,8 @@ const golfData = [
   {
     id: 5,
     PLAYER: "Ava Davis",
-    THRU: 13,
     hcp: 4,
+    teeOffTime: "09:00 AM",
     round: {
       hole1: 5,
       hole2: 4,
@@ -132,8 +132,8 @@ const golfData = [
   {
     id: 6,
     PLAYER: "Sophia Taylor",
-    THRU: 12,
     hcp: 4,
+    teeOffTime: "09:30 AM",
     round: {
       hole1: 4,
       hole2: 3,
@@ -158,8 +158,8 @@ const golfData = [
   {
     id: 7,
     PLAYER: "Jackson Rodriguez",
-    THRU: 11,
     hcp: 4,
+    teeOffTime: "10:00 AM",
     round: {
       hole1: 6,
       hole2: 4,
@@ -184,8 +184,8 @@ const golfData = [
   {
     id: 8,
     PLAYER: "Lucas Lee",
-    THRU: 9,
     hcp: 4,
+    teeOffTime: "10:30 AM",
     round: {
       hole1: 6,
       hole2: 3,
@@ -210,8 +210,8 @@ const golfData = [
   {
     id: 9,
     PLAYER: "Isabella Wilson",
-    THRU: 14,
     hcp: 4,
+    teeOffTime: "11:00 AM",
     round: {
       hole1: 5,
       hole2: 4,
@@ -236,8 +236,8 @@ const golfData = [
   {
     id: 10,
     PLAYER: "Mia Smith",
-    THRU: 13,
     hcp: 4,
+    teeOffTime: "11:30 AM",
     round: {
       hole1: 5,
       hole2: 4,
@@ -257,6 +257,32 @@ const golfData = [
       hole16: 3,
       hole17: 4,
       hole18: 3,
+    },
+  },
+  {
+    id: 11,
+    PLAYER: "James Pott",
+    hcp: 4,
+    teeOffTime: "12:00 PM",
+    round: {
+      // hole1: 1,
+      // hole2: 4,
+      // hole3: 3,
+      // hole4: 5,
+      // hole5: 4,
+      // hole6: 4,
+      // hole7: 3,
+      // hole8: 4,
+      // hole9: 4,
+      // hole10: 4,
+      // hole11: 4,
+      // hole12: 3,
+      // hole13: 4,
+      // hole14: 4,
+      // hole15: 4,
+      // hole16: 4,
+      // hole17: 4,
+      // hole18: 4,
     },
   },
 ];

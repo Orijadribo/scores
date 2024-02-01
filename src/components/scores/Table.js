@@ -35,6 +35,7 @@ const Table = () => {
         playerData.round[`hole${holeNumber}`] - parData[`hole${holeNumber}`];
       return acc + (Number.isFinite(holeScore) ? holeScore : 0);
     }, 0);
+
     return scoreToPar;
   };
 
@@ -86,15 +87,31 @@ const Table = () => {
     }
   });
 
-  const openScore = (id) => {
-    if (id === currentPlayer) {
-      setIsOpen(false);
-      setCurrentPlayer(null);
-    } else{
+  const findThru = (playerData) => {
+    let lastValidHole = null;
 
-      setIsOpen(true);
-      setCurrentPlayer(id);
+    allHoles.map((holeNumber) => {
+      const currentHole = playerData.round[`hole${holeNumber}`];
+      if (typeof currentHole === "number" && !isNaN(currentHole)) {
+        lastValidHole = holeNumber;
+      }
+    });
+
+    if (lastValidHole) {
+      if (lastValidHole === 18) {
+        lastValidHole = "F";
+      }
+      // console.log("Last hole with a valid score:", lastValidHole);
+    } else {
+      return playerData.teeOffTime;
     }
+
+    return lastValidHole;
+  };
+
+  const openScore = (id) => {
+    setIsOpen(id !== currentPlayer);
+    setCurrentPlayer(id === currentPlayer ? null : id);
   };
 
   useEffect(() => {
@@ -116,20 +133,32 @@ const Table = () => {
         {sortedGolfData.map((playerData, index) => (
           <div
             key={playerData.id}
-            className="grid-rows-2 uppercase text-center hover:bg-[#90EE90]/[0.1]"
+            className="grid-rows-2 uppercase text-center "
           >
-            <div className="grid grid-cols-8">
-              <p className=" p-2">{positions[index]}</p>
+            <div className="grid grid-cols-8 hover:bg-[#90EE90]/[0.1] rounded-md">
+              <p className=" p-2">
+                {playerData.round.hole1 !== undefined ? positions[index] : "-"}
+              </p>
               <p
                 className=" flex items-center gap-4 col-span-3 p-2 pl-10 text-left cursor-pointer hover:underline decoration-[#0B6623]"
                 onClick={() => openScore(playerData.id)}
               >
                 {playerData.PLAYER}
               </p>
-              <p className="p-2">{scoreToPar(playerData)}</p>
+              <p className="p-2">
+                {(scoreToPar(playerData) === 0 &&
+                  (playerData.round.hole1 !== undefined ? "E" : "-")) ||
+                  scoreToPar(playerData)}
+              </p>
               <p className="p-2">{findThru(playerData)}</p>
-              <p className="p-2 ">{scoreToPar(playerData)}</p>
-              <p className="p-2 ">{getGross(playerData)}</p>
+              <p className="p-2 ">
+                {(scoreToPar(playerData) === 0 &&
+                  (playerData.round.hole1 !== undefined ? "E" : "-")) ||
+                  scoreToPar(playerData)}
+              </p>
+              <p className="p-2 ">
+                {getGross(playerData) !== 0 ? getGross(playerData) : "-"}
+              </p>
             </div>
             <div>
               {currentPlayer === playerData.id && isOpen && (
@@ -144,6 +173,7 @@ const Table = () => {
                 />
               )}
             </div>
+            <hr className="mx-1" />
           </div>
         ))}
       </div>
