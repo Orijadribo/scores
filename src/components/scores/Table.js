@@ -122,17 +122,17 @@ const Table = () => {
   return (
     <div className="text-sm md:text-base">
       <div className="grid grid-cols-8 uppercase text-center text-white bg-[#0B6623] rounded-t-md p-2">
-        <p className="md:p-5 flex items-center justify-center">pos</p>
-        <p className="col-span-3 md:p-5 flex items-center justify-center">
+        <p className="md:p-3 flex items-center justify-center">pos</p>
+        <p className="col-span-3 md:p-3 flex items-center justify-center">
           player
         </p>
-        <p className="md:p-5 flex items-center justify-center">to par</p>
-        <p className="md:p-5 flex items-center justify-center">thru</p>
-        <div className="md:p-5 flex items-center justify-center">
+        <p className="md:p-3 flex items-center justify-center">to par</p>
+        <p className="md:p-3 flex items-center justify-center">thru</p>
+        <div className="md:p-3 flex items-center justify-center">
           <p className="hidden md:block">round</p>
           <p className="md:hidden block">rnd</p>
         </div>
-        <p className="md:p-5 flex items-center justify-center">gross</p>
+        <p className="md:p-3 flex items-center justify-center">gross</p>
       </div>
       <div>
         {sortedGolfData.map((playerData, index) => (
