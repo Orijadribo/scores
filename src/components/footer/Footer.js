@@ -62,7 +62,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="text-[#65787E] flex justify-center items-center w-full p-2 bg-[#1e2b30] text-sm">
-        <p>&copy; 2024 Wesnile Golf Club. All rights reserved.</p>
+        <p>&copy; 2024 WestNile Golf Club. All rights reserved.</p>
       </div>
     </footer>
   );
