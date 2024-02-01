@@ -6,6 +6,7 @@ import { golfData } from "../../constants";
 const Scores = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
+  const [playerSelected, setPlayerSelected] = useState("");
 
   const handleSearch = (e) => {
     const query = e.target.value;
@@ -19,6 +20,10 @@ const Scores = () => {
   const filteredData = golfData.filter((player) =>
     player.PLAYER.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const selection = (id) => {
+    setPlayerSelected(id);
+  };
 
   return (
     <div className="flex flex-col gap-4 max-w-5xl m-auto p-4 md:p-10 border rounded-xl bg-white">
@@ -39,17 +44,18 @@ const Scores = () => {
                 <li
                   key={player.id}
                   className="cursor-pointer hover:bg-[#90EE90]/[0.1] p-2 rounded-md"
+                  onClick={() => selection(player.id)}
                 >
-                  {filteredData.length === 0
-                    ? "No results found"
-                    : player.PLAYER}
+                  {filteredData.length !== 0
+                    ? player.PLAYER
+                    : console.log("No results found")}
                 </li>
               ))}
             </ul>
           )}
         </div>
       </div>
-      <Table />
+      <Table playerSelected={playerSelected} />
     </div>
   );
 };
