@@ -123,7 +123,7 @@ const Table = () => {
     <div className="text-sm md:text-base">
       <div className="grid grid-cols-8 uppercase text-center text-white bg-[#0B6623] rounded-t-md p-2">
         <p className="md:p-3 flex items-center justify-center">pos</p>
-        <p className="col-span-3 md:p-3 flex items-center justify-center">
+        <p className="col-span-3 md:p-3 flex text-left md:pl-10 items-center">
           player
         </p>
         <p className="md:p-3 flex items-center justify-center">to par</p>
