@@ -10,8 +10,8 @@ const Times = () => {
   });
 
   return (
-    <div>
-      <div className="grid grid-cols-3 uppercase text-center text-white bg-[#0B6623] rounded-t-md p-2">
+    <div className="text-sm md:text-base px-4 md:px-0">
+      <div className="grid grid-cols-3 uppercase text-center text-white bg-[#0B6623] rounded-t-md p-2  sticky top-36 md:top-[90px]">
         <p className="col-span-2 md:p-3 flex items-center text-left md:pl-20">
           name
         </p>

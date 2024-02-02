@@ -285,6 +285,32 @@ const golfData = [
       // hole18: 4,
     },
   },
+  {
+    id: 12,
+    PLAYER: "Jamie Tott",
+    hcp: 4,
+    teeOffTime: "12:30 PM",
+    round: {
+      hole1: 7,
+      // hole2: 4,
+      // hole3: 3,
+      // hole4: 5,
+      // hole5: 4,
+      // hole6: 4,
+      // hole7: 3,
+      // hole8: 4,
+      // hole9: 4,
+      // hole10: 4,
+      // hole11: 4,
+      // hole12: 3,
+      // hole13: 4,
+      // hole14: 4,
+      // hole15: 4,
+      // hole16: 4,
+      // hole17: 4,
+      // hole18: 4,
+    },
+  },
 ];
 
 const yardsData = {
