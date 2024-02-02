@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { FaChevronDown } from "react-icons/fa6";
 
-const HeaderBottom = () => {
+const HeaderBottom = ({ showTeeTimes, setShowTeeTimes }) => {
   const [showGross, setShowGross] = useState(false);
   const [gender, setGender] = useState(false);
   const [scoringType, setScoringType] = useState("Gross");
   const [genderSelected, setGenderSelected] = useState("Male");
+
+  const handleSectionChange = () => {
+    setShowTeeTimes(!showTeeTimes);
+    console.log(showTeeTimes);
+  };
+
+  const openLeaderboard = () => handleSectionChange();
 
   const showScoring = () => {
     setShowGross(!showGross);
@@ -90,7 +97,9 @@ const HeaderBottom = () => {
           </ul>
         )}
       </div>
-      <p className="cursor-pointer">Tee Times</p>
+      <p className="cursor-pointer" onClick={openLeaderboard}>
+        {showTeeTimes?"Tee Times":"Leaderboard"}
+      </p>
     </div>
   );
 };
