@@ -9,7 +9,6 @@ const HeaderBottom = ({ showTeeTimes, setShowTeeTimes }) => {
 
   const handleSectionChange = () => {
     setShowTeeTimes(!showTeeTimes);
-    console.log(showTeeTimes);
   };
 
   const openLeaderboard = () => handleSectionChange();
@@ -51,7 +50,7 @@ const HeaderBottom = ({ showTeeTimes, setShowTeeTimes }) => {
           }`}
         />
         {showGross && (
-          <ul className="bg-white border rounded-md p-1 absolute top-7 w-full">
+          <ul className="bg-white border rounded-md p-1 absolute top-7 w-full z-20">
             <li
               className="p-2 rounded-sm cursor-pointer hover:bg-[#90EE90]/[0.1]"
               onClick={() => handleScoringChange("Gross")}
@@ -80,7 +79,7 @@ const HeaderBottom = ({ showTeeTimes, setShowTeeTimes }) => {
           }`}
         />
         {gender && (
-          <ul className="bg-white border rounded-md p-1 absolute top-7 w-full">
+          <ul className="bg-white border rounded-md p-1 absolute top-7 w-full z-20">
             <li
               className="p-2 rounded-sm cursor-pointer hover:bg-[#90EE90]/[0.1]"
               onClick={() => handleGenderChange("Female")}
@@ -98,7 +97,7 @@ const HeaderBottom = ({ showTeeTimes, setShowTeeTimes }) => {
         )}
       </div>
       <p className="cursor-pointer" onClick={openLeaderboard}>
-        {showTeeTimes?"Tee Times":"Leaderboard"}
+        {showTeeTimes ? "Tee Times" : "Leaderboard"}
       </p>
     </div>
   );

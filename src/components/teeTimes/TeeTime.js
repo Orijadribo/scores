@@ -33,9 +33,9 @@ const TeeTime = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4 max-w-5xl m-auto pb-4 md:p-10 border rounded-xl bg-white">
-      <div className="md:flex items-center justify-between py-6  px-4 sticky top-0 bg-white">
-        <p className="text-[28px] pb-6 md:pb-0">Tee Times</p>
+    <div className="flex flex-col gap-0 max-w-5xl m-auto pb-4 md:p-10 border rounded-xl bg-white z-10">
+      <div className="md:flex items-center justify-between py-6 px-4 md:px-0 sticky top-0 bg-white z-10">
+        <p className="text-[28px] pb-4 md:pb-0">Tee Times</p>
         <div className="flex items-center justify-between border px-5 py-2 rounded-full relative">
           <input
             type="text"
