@@ -11,7 +11,7 @@ const Times = () => {
 
   return (
     <div className="text-sm md:text-base px-4 md:px-0 relative">
-      <div className="grid grid-cols-3 uppercase text-center text-white bg-[#0B6623] rounded-t-md p-2  sticky top-[148px] md:top-[90px]">
+      <div className="grid grid-cols-3 uppercase text-center text-white bg-[#0B6623] rounded-t-md p-2  sticky top-[147px] md:top-[90px]">
         <p className="col-span-2 md:p-3 flex items-center text-left md:pl-16 px-1">
           player
         </p>
