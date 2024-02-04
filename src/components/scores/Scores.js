@@ -10,24 +10,27 @@ const Scores = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [playerSelected, setPlayerSelected] = useState("");
 
+  //Function to handle the search logic
   const handleSearch = (e) => {
+    //Store the typed data into a variable
     const query = e.target.value;
-
     setSearchQuery(query);
-
     // Set searchOpen to true only if there's something typed in the input
     setSearchOpen(query.trim() !== "");
   };
 
+  //Handle the clear funtion of the search input
   const handleClear = () => {
     setSearchQuery("");
     setSearchOpen(false);
   };
 
+  //Create an array of players that include the search term from the input
   const filteredData = golfData.filter((player) =>
     player.PLAYER.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  //Store the id of the player selected from the search dropdown
   const selection = (id) => {
     setPlayerSelected(id);
   };

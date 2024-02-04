@@ -7,30 +7,35 @@ const HeaderBottom = ({ showTeeTimes, setShowTeeTimes }) => {
   const [scoringType, setScoringType] = useState("Gross");
   const [genderSelected, setGenderSelected] = useState("Male");
 
+  //Handle the change when a user clicks on tee times on the UI
   const handleSectionChange = () => {
     setShowTeeTimes(!showTeeTimes);
   };
 
   const openLeaderboard = () => handleSectionChange();
 
+  //Show the different types of scoring ie gross and net
   const showScoring = () => {
     setShowGross(!showGross);
   };
 
+  //Show the different genders
   const showGender = () => {
     setGender(!gender);
   };
 
+  //Handle the different scoring incase a user selects a particular scoring type
   const handleScoringChange = (scoringType) => {
     setShowGross(false);
     setScoringType(scoringType);
   };
-
+ //Handle the different genders 
   const handleGenderChange = (selectedGender) => {
     setGender(false);
     setGenderSelected(selectedGender);
   };
 
+  //Triger a rerender only when the selected states are updated
   useEffect(() => {
     // console.log(genderSelected);
     // console.log(scoringType);

@@ -1,3 +1,4 @@
+//Golf data for each player 
 const golfData = [
   {
     id: 1,
@@ -313,6 +314,7 @@ const golfData = [
   },
 ];
 
+//Yardage for the whole course
 const yardsData = {
   hole1: 500,
   hole2: 400,
@@ -333,7 +335,8 @@ const yardsData = {
   hole17: 400,
   hole18: 400,
 };
-
+ 
+//Par data for the course
 const parData = {
   hole1: 5,
   hole2: 4,

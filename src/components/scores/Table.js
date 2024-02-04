@@ -6,10 +6,12 @@ const Table = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState(null);
 
+  //An array to create the different numbers of holes ie 1-9, 10-18 and 1-18 respectively
   const frontNine = Array.from({ length: 9 }, (_, index) => index + 1);
   const backNine = Array.from({ length: 9 }, (_, index) => index + 10);
   const allHoles = Array.from({ length: 18 }, (_, index) => index + 1);
 
+  //Function to return the gross score for the front 9 holes depending on the player
   const getGrossFront = (playerData) => {
     return frontNine.reduce((acc, holeNumber) => {
       const holeScore = playerData.round[`hole${holeNumber}`];
@@ -17,6 +19,7 @@ const Table = () => {
     }, 0);
   };
 
+  //Function to return the gross score for the back 9 holes depending on the player
   const getGrossBack = (playerData) => {
     return backNine.reduce((acc, holeNumber) => {
       const holeScore = playerData.round[`hole${holeNumber}`];
@@ -24,11 +27,13 @@ const Table = () => {
     }, 0);
   };
 
+  //Function to return the total gross score for the entire 18 holes for a particular player
   const getGross = (playerData) => {
     const totalGross = getGrossFront(playerData) + getGrossBack(playerData);
     return totalGross;
   };
 
+  //Function to return the cumulative score to par for a player
   const scoreToPar = (playerData) => {
     const scoreToPar = allHoles.reduce((acc, holeNumber) => {
       const holeScore =
@@ -39,17 +44,19 @@ const Table = () => {
     return scoreToPar;
   };
 
+  //Function to sort the player according to their score to par in ascending order with the lowest first
   const sortedGolfData = [...golfData].sort(
     (a, b) => scoreToPar(a) - scoreToPar(b)
   );
 
-  // Create an array to store positions
+  // Create an array to store positions of the players
   const positions = sortedGolfData.map((_, index) => index + 1);
 
   // Check for tied positions
   let currentPosition = 1;
   let previousScoreToPar = null;
 
+  //Provide each player with a position from the sortedgolfdata
   positions.forEach((position, index) => {
     const currentScoreToPar = scoreToPar(sortedGolfData[index]);
 
@@ -87,38 +94,42 @@ const Table = () => {
     }
   });
 
+  //Find the last hole with a valid score in the round to give each a player the hole number they are on
   const findThru = (playerData) => {
     let lastValidHole = null;
 
     allHoles.map((holeNumber) => {
       const currentHole = playerData.round[`hole${holeNumber}`];
+      //If type of currentHole is a number and it is a number, ...
       if (typeof currentHole === "number" && !isNaN(currentHole)) {
         lastValidHole = holeNumber;
       }
     });
 
+    //If the last hole is valid and equal to 18, return an "F" for finished else return the player's teetime
     if (lastValidHole) {
       if (lastValidHole === 18) {
         lastValidHole = "F";
       }
-      // console.log("Last hole with a valid score:", lastValidHole);
     } else {
       return playerData.teeOffTime;
     }
-
     return lastValidHole;
   };
 
+  //Open the selected player's scorecard
   const openScore = (id) => {
     setIsOpen(id !== currentPlayer);
     setCurrentPlayer(id === currentPlayer ? null : id);
   };
 
+  //Rerender the page when the following states are changed
   useEffect(() => {
     // console.log("Updated isOpen:", isOpen);
     // console.log("Updated currentPlayer:", currentPlayer);
   }, [isOpen, currentPlayer]);
 
+  //Return a color of the score depending on whether it is an under(red), over(black) or level(green)
   const getScoreColorClass = (score) => {
     if (score < 0) {
       return "text-red-500";

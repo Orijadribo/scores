@@ -5,6 +5,7 @@ import Bogey from "./Bogey";
 import DBogey from "./DBogey";
 
 const ScoreType = ({ hideScore, hole, parData }) => {
+  //Logic to the return the type of score label for each score on the scorecard
   const getScoreType = () => {
     if (hole <= parData - 2) {
       return <Eagle hideScore={hideScore} hole={hole} />;

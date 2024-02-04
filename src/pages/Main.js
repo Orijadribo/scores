@@ -15,6 +15,7 @@ const Main = () => {
         showTeeTimes={showTeeTimes}
         setShowTeeTimes={setShowTeeTimes}
       />
+      {/* Display either player scores or tee times depending on the selection */}
       {showTeeTimes ? <Scores /> : <TeeTime />}
       <Footer />
     </div>

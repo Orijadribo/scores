@@ -10,24 +10,27 @@ const TeeTime = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [playerSelected, setPlayerSelected] = useState("");
 
+  //Handle search for tee times
   const handleSearch = (e) => {
     const query = e.target.value;
-
     setSearchQuery(query);
 
     // Set searchOpen to true only if there's something typed in the input
     setSearchOpen(query.trim() !== "");
   };
 
+  //Handle clear function for the search input
   const handleClear = () => {
     setSearchQuery("");
     setSearchOpen(false);
   };
 
+  //Filter the golfdata for players containing the search query
   const filteredData = golfData.filter((player) =>
     player.PLAYER.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  //Store the player selected from the search dropdon
   const selection = (id) => {
     setPlayerSelected(id);
   };

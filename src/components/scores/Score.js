@@ -18,32 +18,42 @@ const Score = ({
 }) => {
   const [hideScore, setHideScore] = useState(false);
 
-  // Find the player in the golfData array
+  // Find the player in the golfData array with the matching id passed in as a prop
   const selectedPlayer = golfData.find((player) => player.id === playerId);
 
+  //An array to store the par data for each hole on the front 9
   const parValuesFront = Array.from(
     { length: 9 },
     (_, index) => parData[`hole${index + 1}`]
   );
+
+  //An array to store the par data for each hole on the back 9
   const parValuesBack = Array.from(
     { length: 9 },
     (_, index) => parData[`hole${index + 10}`]
   );
 
+  //Cumulative par data for front and back
   const totalParFront = parValuesFront.reduce((acc, val) => acc + val, 0);
   const totalParBack = parValuesBack.reduce((acc, val) => acc + val, 0);
 
+  //Array containing the yards from the front 9
   const frontNineYards = frontNine.map(
     (holeNumber) => yardsData[`hole${holeNumber}`]
   );
+
+  //Array containing the yards from the back 9
   const backNineYards = backNine.map(
     (holeNumber) => yardsData[`hole${holeNumber}`]
   );
 
+  //Array containing cumulative value for the total of yard on the front
   const totalFrontNineYards = frontNineYards.reduce(
     (acc, yards) => acc + yards,
     0
   );
+
+  //Array containing cumulative value for the total of yard on the back
   const totalBackNineYards = backNineYards.reduce(
     (acc, yards) => acc + yards,
     0
