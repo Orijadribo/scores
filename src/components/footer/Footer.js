@@ -27,36 +27,15 @@ const Footer = () => {
           <ul className="text-sm">
             <li className="flex items-center justify-start gap-4 cursor-pointer">
               <FaFacebook />
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                westnilegolfclub
-              </a>
+              <p className="hover:underline">westnilegolfclub</p>
             </li>
             <li className="flex items-center justify-start gap-4 cursor-pointer">
               <FaXTwitter />
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                @westnilegolfclub
-              </a>
+              <p className="hover:underline">@westnilegolfclub</p>
             </li>
             <li className="flex items-center justify-start gap-4 cursor-pointer">
               <FaInstagram />
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                @westnilegolfclub
-              </a>
+              <p className="hover:underline">@westnilegolfclub</p>
             </li>
           </ul>
         </div>
