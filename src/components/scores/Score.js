@@ -63,6 +63,7 @@ const Score = ({
     <div className="rounded-md bg-[#f1f1f1]">
       <Player playerData={playerData} />
       <div className="flex flex-col justify-between capitalize p-5">
+        <p className="text-xl bg-[#cbcbcb] my-1 rounded-md p-1">scorecard</p>
         <div className="overflow-x-auto rounded-md">
           <table className="table-auto border w-full">
             <thead className="bg-[#0B6623]/[0.5]">

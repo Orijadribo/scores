@@ -142,7 +142,7 @@ const Table = () => {
 
   return (
     <div className="text-sm md:text-base px-4 md:px-0 relative">
-      <div className="grid grid-cols-8 uppercase text-center text-white bg-[#0B6623] rounded-t-md py-2 sticky top-[147px] md:top-[90px]">
+      <div className="grid grid-cols-8 uppercase text-center text-white bg-[#0B6623] rounded-t-md py-2 sticky top-[147px] md:top-[90px] z-10">
         <p className="md:p-3 flex items-center justify-center">pos</p>
         <p className="col-span-3 p-2 md:p-3 flex text-left md:pl-10 items-center">
           player
