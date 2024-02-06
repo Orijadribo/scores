@@ -35,13 +35,17 @@ const Table = () => {
 
   //Function to return the cumulative score to par for a player
   const scoreToPar = (playerData) => {
-    const scoreToPar = allHoles.reduce((acc, holeNumber) => {
-      const holeScore =
-        playerData.round[`hole${holeNumber}`] - parData[`hole${holeNumber}`];
-      return acc + (Number.isFinite(holeScore) ? holeScore : 0);
-    }, 0);
+    if (playerData.round.hole1 !== undefined) {
+      const scoreToPar = allHoles.reduce((acc, holeNumber) => {
+        const holeScore =
+          playerData.round[`hole${holeNumber}`] - parData[`hole${holeNumber}`];
+        return acc + (Number.isFinite(holeScore) ? holeScore : 0);
+      }, 0);
 
-    return scoreToPar;
+      return scoreToPar;
+    } else {
+      return "-";
+    }
   };
 
   //Function to sort the player according to their score to par in ascending order with the lowest first

@@ -1,4 +1,4 @@
-//Golf data for each player 
+//Golf data for each player
 const golfData = [
   {
     id: 1,
@@ -23,7 +23,7 @@ const golfData = [
       hole15: 3,
       hole16: 3,
       hole17: 4,
-      hole18: "-",
+      hole18: 3,
     },
   },
   {
@@ -101,7 +101,7 @@ const golfData = [
       hole15: 4,
       hole16: 3,
       hole17: 4,
-      hole18: 3,
+      // hole18: 3,
     },
   },
   {
@@ -127,7 +127,7 @@ const golfData = [
       hole15: 4,
       hole16: 3,
       hole17: 4,
-      hole18: 4,
+      // hole18: 4,
     },
   },
   {
@@ -153,7 +153,7 @@ const golfData = [
       hole15: 3,
       hole16: 3,
       hole17: 4,
-      hole18: 3,
+      // hole18: 3,
     },
   },
   {
@@ -177,9 +177,9 @@ const golfData = [
       hole13: 5,
       hole14: 3,
       hole15: 4,
-      hole16: 3,
-      hole17: 4,
-      hole18: 3,
+      // hole16: 3,
+      // hole17: 4,
+      // hole18: 3,
     },
   },
   {
@@ -203,9 +203,9 @@ const golfData = [
       hole13: 5,
       hole14: 3,
       hole15: 4,
-      hole16: 3,
-      hole17: 4,
-      hole18: 4,
+      // hole16: 3,
+      // hole17: 4,
+      // hole18: 4,
     },
   },
   {
@@ -229,9 +229,9 @@ const golfData = [
       hole13: 4,
       hole14: 4,
       hole15: 3,
-      hole16: 3,
-      hole17: 4,
-      hole18: 3,
+      // hole16: 3,
+      // hole17: 4,
+      // hole18: 3,
     },
   },
   {
@@ -240,24 +240,24 @@ const golfData = [
     hcp: 4,
     teeOffTime: "11:30 AM",
     round: {
-      hole1: 5,
-      hole2: 4,
-      hole3: 3,
-      hole4: 3,
-      hole5: 4,
-      hole6: 4,
-      hole7: 3,
-      hole8: 4,
-      hole9: 3,
-      hole10: 4,
-      hole11: 4,
-      hole12: 3,
-      hole13: 4,
-      hole14: 3,
-      hole15: 3,
-      hole16: 3,
-      hole17: 4,
-      hole18: 3,
+      // hole1: 5,
+      // hole2: 4,
+      // hole3: 3,
+      // hole4: 3,
+      // hole5: 4,
+      // hole6: 4,
+      // hole7: 3,
+      // hole8: 4,
+      // hole9: 3,
+      // hole10: 4,
+      // hole11: 4,
+      // hole12: 3,
+      // hole13: 4,
+      // hole14: 3,
+      // hole15: 3,
+      // hole16: 3,
+      // hole17: 4,
+      // hole18: 3,
     },
   },
   {
@@ -266,7 +266,7 @@ const golfData = [
     hcp: 4,
     teeOffTime: "12:00 PM",
     round: {
-      // hole1: 1,
+      // hole1: 8,
       // hole2: 4,
       // hole3: 3,
       // hole4: 5,
@@ -292,7 +292,7 @@ const golfData = [
     hcp: 4,
     teeOffTime: "12:30 PM",
     round: {
-      hole1: 7,
+      // hole1: 7,
       // hole2: 4,
       // hole3: 3,
       // hole4: 5,
@@ -335,7 +335,7 @@ const yardsData = {
   hole17: 400,
   hole18: 400,
 };
- 
+
 //Par data for the course
 const parData = {
   hole1: 5,
