@@ -17,9 +17,15 @@ const Main = () => {
   useEffect(() => {
     const getTournament = async () => {
       try {
-        const querySnapshot = await getDocs(tournamentsCollectionRef);
-        const tournamentData = querySnapshot.docs.map((doc) => doc.id);
-        setTournamentName(tournamentData);
+        const data = await getDocs(tournamentsCollectionRef);
+        const tournament = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setTournamentData(tournament);
+        if (tournament.length > 0) {
+          setTournamentName(tournament[0].id);
+        }
       } catch (err) {
         console.error(err);
       }
@@ -35,7 +41,11 @@ const Main = () => {
         setShowTeeTimes={setShowTeeTimes}
       />
       {/* Display either player scores or tee times depending on the selection */}
-      {showTeeTimes ? <TeeTime /> : <Scores />}
+      {showTeeTimes ? (
+        <TeeTime tournamentData={tournamentData} />
+      ) : (
+        <Scores tournamentData={tournamentData} />
+      )}
       <Footer />
     </div>
   );

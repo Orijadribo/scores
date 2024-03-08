@@ -102,7 +102,7 @@ const HeaderBottom = ({ showTeeTimes, setShowTeeTimes }) => {
         )}
       </div>
       <p className="cursor-pointer" onClick={openLeaderboard}>
-        {showTeeTimes ? "Tee Times" : "Leaderboard"}
+        {showTeeTimes ? "Leaderboard" : "Tee Times"}
       </p>
     </div>
   );
