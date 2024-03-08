@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { golfData, parData, yardsData } from "../../constants";
-import Score from "./Score";
+import React, { useEffect, useState } from 'react';
+import { golfData, parData, yardsData } from '../../constants';
+import Score from './Score';
 
-const Table = () => {
+const Table = ({ tournamentData }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState(null);
 
@@ -18,7 +18,7 @@ const Table = () => {
       return acc + (Number.isFinite(holeScore) ? holeScore : 0);
     }, 0);
   };
-
+  console.log(tournamentData);
   //Function to return the gross score for the back 9 holes depending on the player
   const getGrossBack = (playerData) => {
     return backNine.reduce((acc, holeNumber) => {
@@ -44,7 +44,7 @@ const Table = () => {
 
       return scoreToPar;
     } else {
-      return "-";
+      return '-';
     }
   };
 
@@ -93,7 +93,7 @@ const Table = () => {
 
     if (tiedIndices.length > 1) {
       tiedIndices.forEach((index) => {
-        positions[index] = "T" + tiedPosition;
+        positions[index] = 'T' + tiedPosition;
       });
     }
   });
@@ -105,7 +105,7 @@ const Table = () => {
     allHoles.map((holeNumber) => {
       const currentHole = playerData.round[`hole${holeNumber}`];
       //If type of currentHole is a number and it is a number, ...
-      if (typeof currentHole === "number" && !isNaN(currentHole)) {
+      if (typeof currentHole === 'number' && !isNaN(currentHole)) {
         lastValidHole = holeNumber;
       }
     });
@@ -113,7 +113,7 @@ const Table = () => {
     //If the last hole is valid and equal to 18, return an "F" for finished else return the player's teetime
     if (lastValidHole) {
       if (lastValidHole === 18) {
-        lastValidHole = "F";
+        lastValidHole = 'F';
       }
     } else {
       return playerData.teeOffTime;
@@ -136,41 +136,41 @@ const Table = () => {
   //Return a color of the score depending on whether it is an under(red), over(black) or level(green)
   const getScoreColorClass = (score) => {
     if (score < 0) {
-      return "text-red-500";
+      return 'text-red-500';
     } else if (score === 0) {
-      return "text-green-500";
+      return 'text-green-500';
     } else {
-      return "text-black";
+      return 'text-black';
     }
   };
 
   return (
-    <div className="text-sm md:text-base px-4 md:px-0 relative">
-      <div className="grid grid-cols-8 uppercase text-center text-white bg-[#0B6623] rounded-t-md py-2 sticky top-[147px] md:top-[90px]">
-        <p className="md:p-3 flex items-center justify-center">pos</p>
-        <p className="col-span-3 p-2 md:p-3 flex text-left md:pl-10 items-center">
+    <div className='text-sm md:text-base px-4 md:px-0 relative'>
+      <div className='grid grid-cols-8 uppercase text-center text-white bg-[#0B6623] rounded-t-md py-2 sticky top-[147px] md:top-[90px]'>
+        <p className='md:p-3 flex items-center justify-center'>pos</p>
+        <p className='col-span-3 p-2 md:p-3 flex text-left md:pl-10 items-center'>
           player
         </p>
-        <p className="md:p-3 flex items-center justify-center">to par</p>
-        <p className="md:p-3 flex items-center justify-center">thru</p>
-        <div className="md:p-3 flex items-center justify-center">
-          <p className="hidden md:block">round</p>
-          <p className="md:hidden block">rnd</p>
+        <p className='md:p-3 flex items-center justify-center'>to par</p>
+        <p className='md:p-3 flex items-center justify-center'>thru</p>
+        <div className='md:p-3 flex items-center justify-center'>
+          <p className='hidden md:block'>round</p>
+          <p className='md:hidden block'>rnd</p>
         </div>
-        <p className="md:p-3 flex items-center justify-center">gross</p>
+        <p className='md:p-3 flex items-center justify-center'>gross</p>
       </div>
       <div>
         {sortedGolfData.map((playerData, index) => (
           <div
             key={playerData.id}
-            className="grid-rows-2 uppercase text-center "
+            className='grid-rows-2 uppercase text-center '
           >
-            <div className="grid grid-cols-8 hover:bg-[#90EE90]/[0.1] rounded-md">
-              <p className="flex items-center justify-center gap-4 p-2">
-                {playerData.round.hole1 !== undefined ? positions[index] : "-"}
+            <div className='grid grid-cols-8 hover:bg-[#90EE90]/[0.1] rounded-md'>
+              <p className='flex items-center justify-center gap-4 p-2'>
+                {playerData.round.hole1 !== undefined ? positions[index] : '-'}
               </p>
               <p
-                className=" flex items-center gap-4 col-span-3 p-2 md:pl-10 text-left cursor-pointer hover:underline decoration-[#0B6623]"
+                className=' flex items-center gap-4 col-span-3 p-2 md:pl-10 text-left cursor-pointer hover:underline decoration-[#0B6623]'
                 onClick={() => openScore(playerData.id)}
               >
                 {playerData.PLAYER}
@@ -181,19 +181,19 @@ const Table = () => {
                 )}`}
               >
                 {(scoreToPar(playerData) === 0 &&
-                  (playerData.round.hole1 !== undefined ? "E" : "-")) ||
+                  (playerData.round.hole1 !== undefined ? 'E' : '-')) ||
                   scoreToPar(playerData)}
               </p>
-              <p className="flex items-center justify-center gap-4 p-2">
+              <p className='flex items-center justify-center gap-4 p-2'>
                 {findThru(playerData)}
               </p>
-              <p className="flex items-center justify-center gap-4 p-2 ">
+              <p className='flex items-center justify-center gap-4 p-2 '>
                 {(scoreToPar(playerData) === 0 &&
-                  (playerData.round.hole1 !== undefined ? "E" : "-")) ||
+                  (playerData.round.hole1 !== undefined ? 'E' : '-')) ||
                   scoreToPar(playerData)}
               </p>
-              <p className="flex items-center justify-center gap-4 p-2 ">
-                {getGross(playerData) !== 0 ? getGross(playerData) : "-"}
+              <p className='flex items-center justify-center gap-4 p-2 '>
+                {getGross(playerData) !== 0 ? getGross(playerData) : '-'}
               </p>
             </div>
             <div>
@@ -209,7 +209,7 @@ const Table = () => {
                 />
               )}
             </div>
-            <hr className="mx-1" />
+            <hr className='mx-1' />
           </div>
         ))}
       </div>
