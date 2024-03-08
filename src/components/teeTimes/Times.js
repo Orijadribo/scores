@@ -34,18 +34,6 @@ const Times = ({ draw }) => {
     getDraw();
   }, [draw]);
 
-  useEffect(() => {
-    console.log('Actual Draw:', actualDraw);
-
-    // This will only run when actualDraw is updated
-    actualDraw.forEach((drawData) => {
-      drawData.draw.forEach((playerData) => {
-        console.log(playerData.player);
-        console.log(playerData.time);
-      });
-    });
-  }, [actualDraw]);
-
   return (
     <div className='text-sm md:text-base px-4 md:px-0 relative'>
       <div className='grid grid-cols-3 uppercase text-center text-white bg-[#0B6623] rounded-t-md p-2  sticky top-[147px] md:top-[90px]'>
