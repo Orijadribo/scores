@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { golfData, parData, yardsData } from '../../constants';
+import { parData, yardsData } from '../../constants';
 import Score from './Score';
 
 const Table = ({ playerSelected, tournamentData, players, draw }) => {
@@ -7,7 +7,7 @@ const Table = ({ playerSelected, tournamentData, players, draw }) => {
   const [currentPlayer, setCurrentPlayer] = useState(null);
 
   // Combine data to create the golfData object
-  const golfDataTrial = draw
+  const golfData = draw
     .map((drawEntry) => {
       const tournament = tournamentData.find((t) => t.id === drawEntry.id);
 
@@ -21,9 +21,6 @@ const Table = ({ playerSelected, tournamentData, players, draw }) => {
             playerDraw.player.includes(p.lastName)
         );
 
-        console.log('Player:', player);
-        console.log('Tournament:', tournament);
-
         if (tournament && tournament.scores) {
           const playerName = `${player.firstName.toLowerCase()}`;
           const playerScores = tournament.scores[playerName];
@@ -33,7 +30,7 @@ const Table = ({ playerSelected, tournamentData, players, draw }) => {
             PLAYER: player ? `${player.firstName} ${player.lastName}` : '',
             hcp: player ? parseFloat(player.handicapIndex) : 0,
             teeOffTime: playerDraw.time,
-            round: playerScores || null,
+            round: playerScores || {},
           };
         } else {
           // Handle the case when tournament or tournament.scores is undefined
@@ -43,11 +40,6 @@ const Table = ({ playerSelected, tournamentData, players, draw }) => {
     })
     .flat()
     .filter((entry) => entry !== null); // Remove entries where tournament or tournament.scores is undefined
-
-  console.log(golfDataTrial);
-  console.log('====================================');
-  console.log(tournamentData);
-  console.log('====================================');
 
   //An array to create the different numbers of holes ie 1-9, 10-18 and 1-18 respectively
   const frontNine = Array.from({ length: 9 }, (_, index) => index + 1);
@@ -76,27 +68,27 @@ const Table = ({ playerSelected, tournamentData, players, draw }) => {
     return totalGross;
   };
 
-  //Function to return the cumulative score to par for a player
-  const scoreToPar = (playerData) => {
-    if (playerData.round.hole1 !== undefined) {
-      const scoreToPar = allHoles.reduce((acc, holeNumber) => {
-        const holeScore =
-          playerData.round[`hole${holeNumber}`] - parData[`hole${holeNumber}`];
-        return acc + (Number.isFinite(holeScore) ? holeScore : 0);
-      }, 0);
+  // Function to return the cumulative score to par for a player
+ const scoreToPar = (playerData) => {
+   if (playerData.round && playerData.round.hole1 !== undefined) {
+     const scoreToPar = allHoles.reduce((acc, holeNumber) => {
+       const holeScore =
+         playerData.round[`hole${holeNumber}`] - parData[`hole${holeNumber}`];
+       return acc + (Number.isFinite(holeScore) ? holeScore : 0);
+     }, 0);
 
-      return scoreToPar;
-    } else {
-      return '-';
-    }
-  };
+     return scoreToPar;
+   } else if (playerData.round === null) {
+     return 'N/A'; // or any other appropriate value for when round is null
+   } else {
+     return '-';
+   }
+ };
 
   //Function to sort the player according to their score to par in ascending order with the lowest first
   const sortedGolfData = [...golfData].sort(
     (a, b) => scoreToPar(a) - scoreToPar(b)
   );
-
-  console.log(sortedGolfData);
 
   // Create an array to store positions of the players
   const positions = sortedGolfData.map((_, index) => index + 1);
@@ -212,7 +204,9 @@ const Table = ({ playerSelected, tournamentData, players, draw }) => {
           >
             <div className='grid grid-cols-8 hover:bg-[#90EE90]/[0.1] rounded-md'>
               <p className='flex items-center justify-center gap-4 p-2'>
-                {playerData.round.hole1 !== undefined ? positions[index] : '-'}
+                {playerData.round && playerData.round.hole1 !== undefined
+                  ? positions[index]
+                  : '-'}
               </p>
               <p
                 className=' flex items-center gap-4 col-span-3 p-2 md:pl-10 text-left cursor-pointer hover:underline decoration-[#0B6623]'
@@ -251,6 +245,7 @@ const Table = ({ playerSelected, tournamentData, players, draw }) => {
                   backNine={backNine}
                   grossFront={getGrossFront(playerData)}
                   grossBack={getGrossBack(playerData)}
+                  golfData={golfData}
                 />
               )}
             </div>

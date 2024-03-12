@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Player from "./Player";
-import { yardsData, parData, golfData } from "../../constants";
+import { yardsData, parData } from "../../constants";
 import Eagle from "./Eagle";
 import Birdie from "./Birdie";
 import Bogey from "./Bogey";
@@ -15,6 +15,7 @@ const Score = ({
   backNine,
   grossFront,
   grossBack,
+  golfData,
 }) => {
   const [hideScore, setHideScore] = useState(false);
 
@@ -60,15 +61,15 @@ const Score = ({
   );
 
   return (
-    <div className="rounded-md bg-[#f1f1f1]">
+    <div className='rounded-md bg-[#f1f1f1]'>
       <Player playerData={playerData} />
-      <div className="flex flex-col justify-between capitalize p-5">
-        <p className="text-xl bg-[#cbcbcb] my-1 rounded-md p-1">scorecard</p>
-        <div className="overflow-x-auto rounded-md">
-          <table className="table-auto border w-full">
-            <thead className="bg-[#0B6623]/[0.5]">
-              <tr className="">
-                <th className="text-left p-2">hole</th>
+      <div className='flex flex-col justify-between capitalize p-5'>
+        <p className='text-xl bg-[#cbcbcb] my-1 rounded-md p-1'>scorecard</p>
+        <div className='overflow-x-auto rounded-md'>
+          <table className='table-auto border w-full'>
+            <thead className='bg-[#0B6623]/[0.5]'>
+              <tr className=''>
+                <th className='text-left p-2'>hole</th>
                 {frontNine.map((holeNumber) => (
                   <th key={holeNumber}>{holeNumber}</th>
                 ))}
@@ -82,35 +83,35 @@ const Score = ({
             </thead>
             <tbody>
               <tr>
-                <td className="text-left p-2">par</td>
+                <td className='text-left p-2'>par</td>
                 {frontNine.map((holeNumber) => (
                   <td key={holeNumber}>{parData[`hole${holeNumber}`]}</td>
                 ))}
-                <td className="bg-[#FAFAD2]">{totalParFront}</td>
+                <td className='bg-[#FAFAD2]'>{totalParFront}</td>
                 {backNine.map((holeNumber) => (
                   <td key={holeNumber}>{parData[`hole${holeNumber}`]}</td>
                 ))}
-                <td className="bg-[#A45A52]">{totalParBack}</td>
+                <td className='bg-[#A45A52]'>{totalParBack}</td>
                 <td>{totalParFront + totalParBack}</td>
               </tr>
               <tr>
-                <td className="text-left p-2">yards</td>
+                <td className='text-left p-2'>yards</td>
                 {frontNine.map((holeNumber) => (
                   <td key={holeNumber}>{yardsData[`hole${holeNumber}`]}</td>
                 ))}
-                <td className="bg-[#FAFAD2]">{totalFrontNineYards}</td>
+                <td className='bg-[#FAFAD2]'>{totalFrontNineYards}</td>
                 {backNine.map((holeNumber) => (
                   <td key={holeNumber}>{yardsData[`hole${holeNumber}`]}</td>
                 ))}
-                <td className="bg-[#A45A52]">{totalBackNineYards}</td>
+                <td className='bg-[#A45A52]'>{totalBackNineYards}</td>
                 <td>{totalFrontNineYards + totalBackNineYards}</td>
               </tr>
-              <tr className="bg-[#90EE90]/[0.2]">
-                <td className="text-left p-2">round</td>
+              <tr className='bg-[#90EE90]/[0.2]'>
+                <td className='text-left p-2'>round</td>
                 {selectedPlayer &&
                   frontNine.map((holeNumber) => (
-                    <td key={holeNumber} className="relative">
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <td key={holeNumber} className='relative'>
+                      <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                         <ScoreType
                           hideScore={hideScore}
                           hole={selectedPlayer.round[`hole${holeNumber}`]}
@@ -120,13 +121,13 @@ const Score = ({
                     </td>
                   ))}
 
-                <td className="bg-[#FAFAD2]">
-                  {Number.isFinite(grossFront) ? grossFront : "-"}
+                <td className='bg-[#FAFAD2]'>
+                  {Number.isFinite(grossFront) ? grossFront : '-'}
                 </td>
                 {selectedPlayer &&
                   backNine.map((holeNumber) => (
-                    <td key={holeNumber} className="relative">
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <td key={holeNumber} className='relative'>
+                      <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                         <ScoreType
                           hideScore={hideScore}
                           hole={selectedPlayer.round[`hole${holeNumber}`]}
@@ -135,20 +136,20 @@ const Score = ({
                       </div>
                     </td>
                   ))}
-                <td className="bg-[#A45A52]">
-                  {Number.isFinite(grossBack) ? grossBack : "-"}
+                <td className='bg-[#A45A52]'>
+                  {Number.isFinite(grossBack) ? grossBack : '-'}
                 </td>
                 <td>{totalGross}</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div className="flex flex-wrap md:flex-nowrap items-start justify-center gap-4 pt-5">
-          <div className="flex gap-4">
+        <div className='flex flex-wrap md:flex-nowrap items-start justify-center gap-4 pt-5'>
+          <div className='flex gap-4'>
             <Eagle hideScore={true} />
             <Birdie hideScore={true} />
           </div>
-          <div className="flex gap-4">
+          <div className='flex gap-4'>
             <Bogey hideScore={true} />
             <DBogey hideScore={true} />
           </div>
