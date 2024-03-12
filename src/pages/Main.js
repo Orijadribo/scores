@@ -11,8 +11,12 @@ const Main = () => {
   const [showTeeTimes, setShowTeeTimes] = useState(false);
   const [tournamentName, setTournamentName] = useState('');
   const [tournamentData, setTournamentData] = useState([]);
+  const [players, setPlayers] = useState([]);
+  const [draw, setDraw] = useState([]);
 
   const tournamentsCollectionRef = collection(db, 'tournaments');
+  const playersCollectionRef = collection(db, 'players');
+  const drawCollectionRef = collection(db, 'draw');
 
   useEffect(() => {
     const getTournament = async () => {
@@ -33,6 +37,38 @@ const Main = () => {
     getTournament();
   }, []);
 
+  useEffect(() => {
+    const getPlayers = async () => {
+      try {
+        const data = await getDocs(playersCollectionRef);
+        const playerData = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setPlayers(playerData);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getPlayers();
+  }, []);
+
+  useEffect(() => {
+    const getDraw = async () => {
+      try {
+        const data = await getDocs(drawCollectionRef);
+        const drawData = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setDraw(drawData);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getDraw();
+  }, []);
+
   return (
     <div className=''>
       <Header tournamentName={tournamentName} />
@@ -44,7 +80,7 @@ const Main = () => {
       {showTeeTimes ? (
         <TeeTime tournamentData={tournamentData} />
       ) : (
-        <Scores tournamentData={tournamentData} />
+        <Scores tournamentData={tournamentData} players={players}  draw={draw}/>
       )}
       <Footer />
     </div>

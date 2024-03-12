@@ -4,7 +4,7 @@ import { IoClose } from 'react-icons/io5';
 import Table from './Table';
 import { golfData } from '../../constants';
 
-const Scores = ({ tournamentData }) => {
+const Scores = ({ tournamentData, players, draw }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchOpen, setSearchOpen] = useState(false);
   const [playerSelected, setPlayerSelected] = useState('');
@@ -71,7 +71,7 @@ const Scores = ({ tournamentData }) => {
           )}
         </div>
       </div>
-      <Table playerSelected={playerSelected} tournamentData={tournamentData} />
+      <Table playerSelected={playerSelected} tournamentData={tournamentData} players={players} draw={draw}/>
     </div>
   );
 };

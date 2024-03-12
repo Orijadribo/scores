@@ -2,9 +2,52 @@ import React, { useEffect, useState } from 'react';
 import { golfData, parData, yardsData } from '../../constants';
 import Score from './Score';
 
-const Table = ({ tournamentData }) => {
+const Table = ({ playerSelected, tournamentData, players, draw }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState(null);
+
+  // Combine data to create the golfData object
+  const golfDataTrial = draw
+    .map((drawEntry) => {
+      const tournament = tournamentData.find((t) => t.id === drawEntry.id);
+
+      return drawEntry.draw.map((playerDraw) => {
+        const player = players.find(
+          (p) =>
+            p &&
+            p.firstName &&
+            p.lastName &&
+            playerDraw.player.includes(p.firstName) &&
+            playerDraw.player.includes(p.lastName)
+        );
+
+        console.log('Player:', player);
+        console.log('Tournament:', tournament);
+
+        if (tournament && tournament.scores) {
+          const playerName = `${player.firstName.toLowerCase()}`;
+          const playerScores = tournament.scores[playerName];
+
+          return {
+            id: player ? player.id : null, // Use player ID as the unique identifier
+            PLAYER: player ? `${player.firstName} ${player.lastName}` : '',
+            hcp: player ? parseFloat(player.handicapIndex) : 0,
+            teeOffTime: playerDraw.time,
+            round: playerScores || null,
+          };
+        } else {
+          // Handle the case when tournament or tournament.scores is undefined
+          return null;
+        }
+      });
+    })
+    .flat()
+    .filter((entry) => entry !== null); // Remove entries where tournament or tournament.scores is undefined
+
+  console.log(golfDataTrial);
+  console.log('====================================');
+  console.log(tournamentData);
+  console.log('====================================');
 
   //An array to create the different numbers of holes ie 1-9, 10-18 and 1-18 respectively
   const frontNine = Array.from({ length: 9 }, (_, index) => index + 1);
@@ -18,7 +61,7 @@ const Table = ({ tournamentData }) => {
       return acc + (Number.isFinite(holeScore) ? holeScore : 0);
     }, 0);
   };
-  console.log(tournamentData);
+
   //Function to return the gross score for the back 9 holes depending on the player
   const getGrossBack = (playerData) => {
     return backNine.reduce((acc, holeNumber) => {
@@ -52,6 +95,8 @@ const Table = ({ tournamentData }) => {
   const sortedGolfData = [...golfData].sort(
     (a, b) => scoreToPar(a) - scoreToPar(b)
   );
+
+  console.log(sortedGolfData);
 
   // Create an array to store positions of the players
   const positions = sortedGolfData.map((_, index) => index + 1);
