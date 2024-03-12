@@ -5,7 +5,7 @@ import Scores from '../components/scores/Scores';
 import Footer from '../components/footer/Footer';
 import TeeTime from '../components/teeTimes/TeeTime';
 import db from '../api/firebaseConfig';
-import { getDocs, collection } from 'firebase/firestore';
+import { getDocs, collection, doc, onSnapshot } from 'firebase/firestore';
 
 const Main = () => {
   const [showTeeTimes, setShowTeeTimes] = useState(false);
@@ -29,6 +29,20 @@ const Main = () => {
         setTournamentData(tournament);
         if (tournament.length > 0) {
           setTournamentName(tournament[0].id);
+
+          // Set up real-time listener for the "Women's" document
+          const womenDocRef = doc(tournamentsCollectionRef, "Women's");
+          const unsubscribe = onSnapshot(womenDocRef, (doc) => {
+            // Handle changes to the "Women's" document here
+            const updatedData = {
+              ...doc.data(),
+              id: doc.id,
+            };
+            // Update state or perform any other actions with the updated data
+          });
+
+          // Remember to unsubscribe when the component unmounts
+          return () => unsubscribe();
         }
       } catch (err) {
         console.error(err);
@@ -80,7 +94,7 @@ const Main = () => {
       {showTeeTimes ? (
         <TeeTime tournamentData={tournamentData} />
       ) : (
-        <Scores tournamentData={tournamentData} players={players}  draw={draw}/>
+        <Scores tournamentData={tournamentData} players={players} draw={draw} />
       )}
       <Footer />
     </div>
