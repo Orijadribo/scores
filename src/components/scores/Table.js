@@ -90,6 +90,9 @@ const Table = ({ playerSelected, tournamentData, players, draw }) => {
     (a, b) => scoreToPar(a) - scoreToPar(b)
   );
 
+  console.log(sortedGolfData);
+  console.log(golfData);
+
   // Create an array to store positions of the players
   const positions = sortedGolfData.map((_, index) => index + 1);
 

@@ -18,6 +18,7 @@ const Main = () => {
   const playersCollectionRef = collection(db, 'players');
   const drawCollectionRef = collection(db, 'draw');
 
+  // Inside the first useEffect
   useEffect(() => {
     const getTournament = async () => {
       try {
@@ -27,6 +28,7 @@ const Main = () => {
           id: doc.id,
         }));
         setTournamentData(tournament);
+
         if (tournament.length > 0) {
           setTournamentName(tournament[0].id);
 
@@ -38,7 +40,12 @@ const Main = () => {
               ...doc.data(),
               id: doc.id,
             };
-            // Update state or perform any other actions with the updated data
+            // Update state with the updated data
+            setTournamentData((prevData) =>
+              prevData.map((item) =>
+                item.id === updatedData.id ? updatedData : item
+              )
+            );
           });
 
           // Remember to unsubscribe when the component unmounts
