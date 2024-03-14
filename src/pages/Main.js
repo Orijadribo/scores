@@ -32,7 +32,6 @@ const Main = () => {
         if (tournament.length > 0) {
           setTournamentName(tournament[0].id);
 
-          if (tournamentName) {
             // Set up real-time listener for the tournament document
             const tournamentDocRef = doc(
               tournamentsCollectionRef,
@@ -55,7 +54,6 @@ const Main = () => {
             // Remember to unsubscribe when the component unmounts
             return () => unsubscribe();
           }
-        }
       } catch (err) {
         console.error(err);
       }
