@@ -32,24 +32,29 @@ const Main = () => {
         if (tournament.length > 0) {
           setTournamentName(tournament[0].id);
 
-          // Set up real-time listener for the "Women's" document
-          const womenDocRef = doc(tournamentsCollectionRef, "Women's");
-          const unsubscribe = onSnapshot(womenDocRef, (doc) => {
-            // Handle changes to the "Women's" document here
-            const updatedData = {
-              ...doc.data(),
-              id: doc.id,
-            };
-            // Update state with the updated data
-            setTournamentData((prevData) =>
-              prevData.map((item) =>
-                item.id === updatedData.id ? updatedData : item
-              )
+          if (tournamentName) {
+            // Set up real-time listener for the tournament document
+            const tournamentDocRef = doc(
+              tournamentsCollectionRef,
+              tournamentName
             );
-          });
+            const unsubscribe = onSnapshot(tournamentDocRef, (doc) => {
+              // Handle changes to the tournament document here
+              const updatedData = {
+                ...doc.data(),
+                id: doc.id,
+              };
+              // Update state with the updated data
+              setTournamentData((prevData) =>
+                prevData.map((item) =>
+                  item.id === updatedData.id ? updatedData : item
+                )
+              );
+            });
 
-          // Remember to unsubscribe when the component unmounts
-          return () => unsubscribe();
+            // Remember to unsubscribe when the component unmounts
+            return () => unsubscribe();
+          }
         }
       } catch (err) {
         console.error(err);

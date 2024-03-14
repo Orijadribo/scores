@@ -68,22 +68,21 @@ const Table = ({ playerSelected, tournamentData, players, draw }) => {
     return totalGross;
   };
 
-  // Function to return the cumulative score to par for a player
- const scoreToPar = (playerData) => {
-   if (playerData.round && playerData.round.hole1 !== undefined) {
-     const scoreToPar = allHoles.reduce((acc, holeNumber) => {
-       const holeScore =
-         playerData.round[`hole${holeNumber}`] - parData[`hole${holeNumber}`];
-       return acc + (Number.isFinite(holeScore) ? holeScore : 0);
-     }, 0);
+  const scoreToPar = (playerData) => {
+    if (playerData.round && playerData.round.hole1 !== undefined) {
+      const scoreToPar = allHoles.reduce((acc, holeNumber) => {
+        const holeScore =
+          playerData.round[`hole${holeNumber}`] - parData[`hole${holeNumber}`];
+        return acc + (Number.isFinite(holeScore) ? holeScore : 0);
+      }, 0);
 
-     return scoreToPar;
-   } else if (playerData.round === null) {
-     return 'N/A'; // or any other appropriate value for when round is null
-   } else {
-     return '-';
-   }
- };
+      return scoreToPar;
+    } else if (playerData.round === null) {
+      return Infinity; // Use Infinity for cases where the score is not applicable
+    } else {
+      return Infinity; // Use Infinity for cases where the round data is not available
+    }
+  };
 
   //Function to sort the player according to their score to par in ascending order with the lowest first
   const sortedGolfData = [...golfData].sort(
@@ -222,17 +221,29 @@ const Table = ({ playerSelected, tournamentData, players, draw }) => {
                   scoreToPar(playerData)
                 )}`}
               >
-                {(scoreToPar(playerData) === 0 &&
-                  (playerData.round.hole1 !== undefined ? 'E' : '-')) ||
-                  scoreToPar(playerData)}
+                {scoreToPar(playerData) === 0 &&
+                playerData.round.hole1 !== undefined &&
+                scoreToPar(playerData) !== Infinity
+                  ? 'E'
+                  : scoreToPar(playerData) === Infinity
+                  ? '-'
+                  : scoreToPar(playerData)}
               </p>
               <p className='flex items-center justify-center gap-4 p-2'>
                 {findThru(playerData)}
               </p>
-              <p className='flex items-center justify-center gap-4 p-2 '>
-                {(scoreToPar(playerData) === 0 &&
-                  (playerData.round.hole1 !== undefined ? 'E' : '-')) ||
-                  scoreToPar(playerData)}
+              <p
+                className={`flex items-center justify-center gap-4 p-2 ${getScoreColorClass(
+                  scoreToPar(playerData)
+                )}`}
+              >
+                {scoreToPar(playerData) === 0 &&
+                playerData.round.hole1 !== undefined &&
+                scoreToPar(playerData) !== Infinity
+                  ? 'E'
+                  : scoreToPar(playerData) === Infinity
+                  ? '-'
+                  : scoreToPar(playerData)}
               </p>
               <p className='flex items-center justify-center gap-4 p-2 '>
                 {getGross(playerData) !== 0 ? getGross(playerData) : '-'}
