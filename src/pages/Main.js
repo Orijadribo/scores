@@ -32,28 +32,28 @@ const Main = () => {
         if (tournament.length > 0) {
           setTournamentName(tournament[0].id);
 
-            // Set up real-time listener for the tournament document
-            const tournamentDocRef = doc(
-              tournamentsCollectionRef,
-              tournamentName
+          // Set up real-time listener for the tournament document
+          const tournamentDocRef = doc(
+            tournamentsCollectionRef,
+            tournament[0].id
+          );
+          const unsubscribe = onSnapshot(tournamentDocRef, (doc) => {
+            // Handle changes to the tournament document here
+            const updatedData = {
+              ...doc.data(),
+              id: doc.id,
+            };
+            // Update state with the updated data
+            setTournamentData((prevData) =>
+              prevData.map((item) =>
+                item.id === updatedData.id ? updatedData : item
+              )
             );
-            const unsubscribe = onSnapshot(tournamentDocRef, (doc) => {
-              // Handle changes to the tournament document here
-              const updatedData = {
-                ...doc.data(),
-                id: doc.id,
-              };
-              // Update state with the updated data
-              setTournamentData((prevData) =>
-                prevData.map((item) =>
-                  item.id === updatedData.id ? updatedData : item
-                )
-              );
-            });
+          });
 
-            // Remember to unsubscribe when the component unmounts
-            return () => unsubscribe();
-          }
+          // Remember to unsubscribe when the component unmounts
+          return () => unsubscribe();
+        }
       } catch (err) {
         console.error(err);
       }
